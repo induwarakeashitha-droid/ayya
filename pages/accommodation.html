@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Accommodation — Pearl Heritage Tours Sri Lanka</title>
+<link rel="stylesheet" href="../css/main.css"/>
+<style>
+/* ── Hotel Grid ── */
+.hotel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 4rem; }
+@media(max-width:900px){ .hotel-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:560px){ .hotel-grid { grid-template-columns: 1fr; } }
+
+.hotel-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex; flex-direction: column;
+}
+.hotel-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.hotel-card-img { position: relative; overflow: hidden; height: 210px; }
+.hotel-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.hotel-card:hover .hotel-card-img img { transform: scale(1.07); }
+
+.hotel-tier {
+  position: absolute; top: 0.8rem; left: 0.8rem;
+  padding: 0.25rem 0.7rem; border-radius: 30px;
+  font-family: var(--font-ui); font-size: 0.58rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: white; font-weight: 600;
+}
+.hotel-tier.luxury   { background: #1a1a1a; }
+.hotel-tier.comfort  { background: var(--green); }
+.hotel-tier.boutique { background: var(--gold-dark); }
+.hotel-tier.budget   { background: #5a7a5a; }
+
+.hotel-stars { position: absolute; bottom: 0.7rem; right: 0.8rem; color: #FFD700; font-size: 0.8rem; letter-spacing: 0.05rem; }
+
+.hotel-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
+.hotel-region { font-family: var(--font-ui); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.3rem; }
+.hotel-name { color: var(--green); font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; line-height: 1.3; }
+.hotel-desc { font-size: 0.8rem; color: var(--text-mid); line-height: 1.65; margin-bottom: 0.8rem; flex: 1; }
+.hotel-perks { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.9rem; }
+.hotel-perk { background: var(--cream); border-radius: 4px; padding: 0.2rem 0.5rem; font-family: var(--font-ui); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--green); }
+.hotel-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 0.8rem; border-top: 1px solid #EDE8DC; }
+.hotel-price { font-family: var(--font-display); font-size: 1.1rem; color: var(--green); font-weight: 700; }
+.hotel-price span { font-size: 0.7rem; color: var(--text-light); font-family: var(--font-ui); font-weight: 400; }
+
+/* Region section titles */
+.region-title {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2rem; margin-top: 1rem;
+}
+.region-title h3 { color: var(--green); font-size: 1.3rem; white-space: nowrap; }
+.region-title::after { content: ''; flex: 1; height: 1px; background: #E0D8C8; }
+
+/* Tier filter */
+.tier-filter { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem; }
+.tier-btn { padding: 0.5rem 1.2rem; border: 1.5px solid #E0D8C8; border-radius: 30px; font-family: var(--font-ui); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: var(--transition); background: var(--white); color: var(--text-mid); }
+.tier-btn:hover, .tier-btn.active { background: var(--green); color: white; border-color: var(--green); }
+
+/* info strip */
+.accom-note { background: var(--green); color: white; border-radius: var(--radius-lg); padding: 2rem 2.5rem; margin-bottom: 3rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+.accom-note p { margin: 0; font-size: 0.87rem; color: rgba(255,255,255,0.85); flex: 1; }
+.accom-note strong { color: white; }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80" alt="Sri Lanka Accommodation"/>
+  <div class="page-hero-content">
+    <span class="label">Vetted &amp; Personally Selected</span>
+    <h1>Where You'll <em>Stay</em></h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>Accommodation</div>
+  </div>
+</div>
+
+<section class="section" style="background:var(--cream)">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="label">200+ Partner Properties</span>
+      <h2>Handpicked Hotels <em>Across Sri Lanka</em></h2>
+      <div class="divider"></div>
+      <p>Every property in our portfolio has been personally inspected by our team. We only recommend hotels we'd happily stay in ourselves — from eco lodges to five-star oceanfront resorts.</p>
+    </div>
+
+    <div class="accom-note">
+      <div style="font-size:2rem">🏨</div>
+      <p><strong>All hotels shown here are available to include in your tour package.</strong> Prices shown are approximate rack rates per room per night. As a DMC, Pearl Heritage Tours secures contracted rates that are typically <strong>10–30% lower</strong> than what you'd find online. Tell us your dates and we'll quote the best available rate.</p>
+      <a href="contact.html" class="btn btn-gold" style="white-space:nowrap">Get Hotel Rates →</a>
+    </div>
+
+    <div class="tier-filter">
+      <button class="tier-btn active" data-tier="all">All Properties</button>
+      <button class="tier-btn" data-tier="luxury">Luxury 5★</button>
+      <button class="tier-btn" data-tier="comfort">Comfort 4★</button>
+      <button class="tier-btn" data-tier="boutique">Boutique</button>
+      <button class="tier-btn" data-tier="budget">Budget / Eco</button>
+    </div>
+
+    <!-- ══ COLOMBO & NEGOMBO ══ -->
+    <div class="region-title"><h3>📍 Colombo &amp; Negombo</h3></div>
+    <div class="hotel-grid">
+
+      <div class="hotel-card" data-tier="luxury">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(25).webp" alt="Galle Face Hotel"/>
+          <div class="hotel-tier luxury">Luxury</div>
+          <div class="hotel-stars">★★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Colombo</div>
+          <div class="hotel-name">Galle Face Hotel</div>
+          <p class="hotel-desc">A colonial icon since 1864, overlooking the Indian Ocean. Grand colonnaded verandas, afternoon tea service and an unbeatable Galle Face promenade location.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">Ocean View</span><span class="hotel-perk">Heritage Building</span><span class="hotel-perk">Pool</span><span class="hotel-perk">Fine Dining</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$160 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card" data-tier="luxury">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/3-galle-face-promenade.webp" alt="Shangri-La Colombo"/>
+          <div class="hotel-tier luxury">Luxury</div>
+          <div class="hotel-stars">★★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Colombo 01</div>
+          <div class="hotel-name">Shangri-La Colombo</div>
+          <p class="hotel-desc">Sri Lanka's most modern five-star tower — three infinity pools, six restaurants and panoramic harbour-to-mountains views from the upper floors.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">3 Infinity Pools</span><span class="hotel-perk">Spa</span><span class="hotel-perk">6 Restaurants</span><span class="hotel-perk">City Views</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$220 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card" data-tier="comfort">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(26).webp" alt="Jetwing Blue Negombo"/>
+          <div class="hotel-tier comfort">Comfort</div>
+          <div class="hotel-stars">★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Negombo</div>
+          <div class="hotel-name">Jetwing Blue</div>
+          <p class="hotel-desc">Sri Lanka's finest beachfront 4-star, perfect for a first or last night. Direct beach access, two pools and the famous Jetwing hospitality just minutes from the airport.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">Beachfront</span><span class="hotel-perk">2 Pools</span><span class="hotel-perk">Airport 10 min</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$95 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ CULTURAL TRIANGLE ══ -->
+    <div class="region-title"><h3>📍 Cultural Triangle — Sigiriya / Habarana / Dambulla</h3></div>
+    <div class="hotel-grid">
+
+      <div class="hotel-card" data-tier="luxury">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(22).webp" alt="Heritance Kandalama"/>
+          <div class="hotel-tier luxury">Luxury</div>
+          <div class="hotel-stars">★★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Dambulla</div>
+          <div class="hotel-name">Heritance Kandalama</div>
+          <p class="hotel-desc">Geoffrey Bawa's masterpiece — carved into the rock face above Kandalama Lake. The jungle literally grows through the hotel corridors. A UNESCO-adjacent icon.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">Bawa Architecture</span><span class="hotel-perk">Lake Views</span><span class="hotel-perk">Infinity Pool</span><span class="hotel-perk">Eco</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$210 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card" data-tier="comfort">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(27).webp" alt="Cinnamon Lodge Habarana"/>
+          <div class="hotel-tier comfort">Comfort</div>
+          <div class="hotel-stars">★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Habarana</div>
+          <div class="hotel-name">Cinnamon Lodge Habarana</div>
+          <p class="hotel-desc">Spacious chalets set in a lush forest — the ideal base camp for the Cultural Triangle. Famous elephant encounters in the gardens at dusk. Excellent elephant-back or jeep safaris arranged on-site.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">Forest Setting</span><span class="hotel-perk">Pool</span><span class="hotel-perk">Elephant Safaris</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$130 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hotel-card" data-tier="boutique">
+        <div class="hotel-card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/20190827-155339-largejpg.jpg" alt="Aliya Resort Sigiriya"/>
+          <div class="hotel-tier boutique">Boutique</div>
+          <div class="hotel-stars">★★★★</div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-region">Sigiriya</div>
+          <div class="hotel-name">Aliya Resort &amp; Spa</div>
+          <p class="hotel-desc">Elephant-themed boutique resort with stunning direct views of Sigiriya Rock from the pool. A romantic property that feels both intimate and special — remarkable value.</p>
+          <div class="hotel-perks">
+            <span class="hotel-perk">Sigiriya Views</span><span class="hotel-perk">Spa</span><span class="hotel-perk">Intimate</span>
+          </div>
+          <div class="hotel-footer">
+            <div class="hotel-price">$110 <span>/ night</span></div>
+            <a href="contact.html" class="btn btn-gold" style="padding:0.4rem 0.9rem;font-size:0.62rem">Include in Tour</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- CTA -->
+    <div style="background:var(--green);border-radius:var(--radius-lg);padding:3rem;text-align:center;color:white;margin-top:1rem">
+      <span style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light)">Personalised Selection</span>
+      <h3 style="color:white;font-size:1.7rem;margin:0.5rem 0 1rem">Want Us to Pick Your Hotels?</h3>
+      <p style="color:rgba(255,255,255,0.8);max-width:500px;margin:0 auto 1.8rem;font-size:0.88rem">Tell us your tour dates, budget and preferences — we'll build a personalised hotel selection and send you photos, reviews and rates within 24 hours.</p>
+      <a href="contact.html" class="btn btn-gold">Request Hotel Selection →</a>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/layout.js"></script>
+<script src="../js/main.js"></script>
+<script>
+// Tier filter
+document.querySelectorAll('.tier-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tier-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tier = btn.dataset.tier;
+    document.querySelectorAll('.hotel-card').forEach(card => {
+      if (tier === 'all' || card.dataset.tier === tier) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

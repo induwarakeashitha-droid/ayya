@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Day Tours — Pearl Heritage Tours Sri Lanka</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    /* ── TOUR PACKAGE CARD ── */
+    .pkg-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+    }
+
+    .pkg-card.reverse {
+      grid-template-columns: 1.3fr 1fr;
+    }
+
+    .pkg-card.reverse .pkg-img {
+      order: 2;
+    }
+
+    .pkg-card.reverse .pkg-body {
+      order: 1;
+    }
+
+    .pkg-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pkg-img img {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .pkg-card:hover .pkg-img img {
+      transform: scale(1.04);
+    }
+
+    .pkg-badge {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      background: var(--green);
+      color: white;
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+    }
+
+    .pkg-badge.popular {
+      background: var(--gold-dark);
+    }
+
+    .pkg-badge.luxury {
+      background: #1a1a1a;
+    }
+
+    .pkg-body {
+      padding: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pkg-body .label {
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .pkg-body h3 {
+      color: var(--green);
+      margin-bottom: 0.3rem;
+      font-size: 1.55rem;
+      line-height: 1.25;
+    }
+
+    .pkg-tagline {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .pkg-meta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      padding: 1rem 0;
+      border-top: 1px solid #EDE8DC;
+      border-bottom: 1px solid #EDE8DC;
+      margin-bottom: 1.2rem;
+    }
+
+    .pkg-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-mid);
+    }
+
+    .pkg-meta-item span {
+      font-family: var(--font-ui);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+
+    .pkg-desc {
+      font-size: 0.87rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 1.1rem;
+    }
+
+    /* day-by-day pills */
+    .route-strip {
+      display: flex;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .route-day {
+      background: var(--cream);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      cursor: default;
+    }
+
+    .route-day strong {
+      display: block;
+      font-size: 0.55rem;
+      color: var(--gold-dark);
+    }
+
+    /* highlights */
+    .pkg-highlights {
+      list-style: none;
+      margin-bottom: 1.2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem 0.5rem;
+    }
+
+    .pkg-highlights li {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      padding: 0.2rem 0;
+    }
+
+    .pkg-highlights li::before {
+      content: '✦';
+      color: var(--gold);
+      margin-right: 0.45rem;
+    }
+
+    /* hotels */
+    .hotels-strip {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .hotels-strip .hs-label {
+      font-family: var(--font-ui);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .hotels-strip ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.8rem;
+    }
+
+    .hotels-strip li {
+      font-size: 0.78rem;
+      color: var(--text-mid);
+      list-style: none;
+    }
+
+    .hotels-strip li::before {
+      content: '🏨 ';
+    }
+
+    /* price & CTA */
+    .pkg-footer {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #EDE8DC;
+    }
+
+    .price-block .from {
+      font-family: var(--font-ui);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .price-block .amount {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--green);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .price-block .per {
+      font-size: 0.72rem;
+      color: var(--text-light);
+    }
+
+    .price-block .was {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      text-decoration: line-through;
+      margin-left: 0.3rem;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 0.6rem;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    .btn-wa {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 0.65rem 1.1rem;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .btn-wa:hover {
+      background: #1db954;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-email {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 0.65rem 1.1rem;
+      border-radius: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .btn-email:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    /* responsive */
+    @media(max-width:900px) {
+
+      .pkg-card,
+      .pkg-card.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .pkg-card.reverse .pkg-img {
+        order: 1;
+      }
+
+      .pkg-card.reverse .pkg-body {
+        order: 2;
+      }
+
+      .pkg-img img {
+        min-height: 260px;
+      }
+
+      .pkg-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* filter bar */
+    .filter-bar {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.3rem;
+      border: 1.5px solid #E0D8C8;
+      border-radius: 30px;
+      font-family: var(--font-ui);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--white);
+      color: var(--text-mid);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+    }
+
+    /* hero override */
+    .tours-hero-note {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+    }
+
+    .tours-hero-note strong {
+      color: var(--green);
+    }
+
+    /* sticky WA float */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      background: #25D366;
+      color: white;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .wa-float:hover {
+      transform: scale(1.1);
+    }
+
+    .wa-float svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Floating WhatsApp -->
+  <div class="wa-float" title="Chat on WhatsApp"
+    onclick="window.open('https://wa.me/94771234567?text=Hello!%20I%27d%20like%20to%20enquire%20about%20a%20Sri%20Lanka%20multi-day%20tour.','_blank')">
+    <svg viewBox="0 0 24 24">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </div>
+
+  <div class="page-hero">
+    <img src="https://69cd03b887c4a0b6216caad2.imgix.net/venus-major-YrXu11eBNTM-unsplash.jpg" alt="Sri Lanka Tours" />
+    <div class="page-hero-content">
+      <span class="label">Pearl Heritage Tours · Sri Lanka</span>
+      <h1>Multi-Day<br><em>Tour Packages</em></h1>
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>Tours</div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="label">6 Signature Journeys</span>
+        <h2>Discover Sri Lanka <em>Your Way</em></h2>
+        <div class="divider"></div>
+        <p>Each package is fully private, chauffeured and curated — including vetted hotels, a licensed guide and
+          seamless transfers from arrival to departure.</p>
+      </div>
+
+      <div class="tours-hero-note">
+        📅 All prices shown are <strong>per person</strong> based on double occupancy · 🚗 Includes private A/C vehicle
+        &amp; driver throughout · ✈️ International flights not included
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All Packages</button>
+        <button class="filter-btn" data-filter="cultural">Cultural</button>
+        <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+        <button class="filter-btn" data-filter="adventure">Adventure</button>
+        <button class="filter-btn" data-filter="luxury">Luxury</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="romance">Romance</button>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 1 — Classic Sri Lanka Circuit (10 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card aos" data-category="cultural" id="classic">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Journey2.jpg" alt="Sigiriya Rock" />
+          <div class="pkg-badge popular">Most Popular</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Cultural &amp; Scenic</span>
+          <h3>Classic Sri Lanka Circuit</h3>
+          <p class="pkg-tagline">The island's greatest hits — cultural wonders, misty highlands, colonial coast</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 10 Days / 9 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Private</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> Mid-Range</div>
+            <div class="pkg-meta-item">🚗 <span>Starts:</span> Colombo Airport</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1–2</strong>Negombo</div>
+            <div class="route-day"><strong>Day 3</strong>Sigiriya</div>
+            <div class="route-day"><strong>Day 4</strong>Dambulla</div>
+            <div class="route-day"><strong>Day 5–6</strong>Kandy</div>
+            <div class="route-day"><strong>Day 7</strong>Nuwara Eliya</div>
+            <div class="route-day"><strong>Day 8</strong>Ella</div>
+            <div class="route-day"><strong>Day 9</strong>Galle</div>
+            <div class="route-day"><strong>Day 10</strong>Colombo Fly-Out</div>
+          </div>
+
+          <p class="pkg-desc">Sri Lanka's most beloved circuit — climb the legendary Sigiriya Rock Fortress, explore the
+            UNESCO Sacred City of Kandy, ride the world-famous Ella train through tea-draped hills, and unwind inside
+            the 17th-century Dutch walls of Galle Fort.</p>
+
+          <ul class="pkg-highlights">
+            <li>Sigiriya Rock Fortress &amp; frescoes</li>
+            <li>Dambulla Cave Temple (5 caves)</li>
+            <li>Temple of the Tooth, Kandy</li>
+            <li>Peradeniya Royal Botanic Gardens</li>
+            <li>Nuwara Eliya tea factory tour</li>
+            <li>Iconic Ella train journey</li>
+            <li>Nine Arch Bridge &amp; Little Adam's Peak</li>
+            <li>Galle Fort UNESCO World Heritage</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$1,199 <span class="per">/ person</span></div>
+              <div class="per">Based on 2 pax · Double occupancy</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Classic Sri Lanka Circuit (10 Days) — $1,199/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Classic Sri Lanka Circuit (10 Days) — $1,199/pax')">✉ Email
+                Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 2 — Wildlife Safari Express (9 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card reverse aos" data-category="wildlife" id="wildlife">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/oleksandrpidvalnyi-safari-7112150.jpg"
+            alt="Leopard Yala" />
+          <div class="pkg-badge">Wildlife</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Wildlife &amp; Nature</span>
+          <h3>Wildlife Safari Express</h3>
+          <p class="pkg-tagline">Leopards, elephants, blue whales — Sri Lanka's wild side in 9 days</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 9 Days / 8 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Private</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> Mid-Range</div>
+            <div class="pkg-meta-item">🚗 <span>Starts:</span> Colombo Airport</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1</strong>Colombo</div>
+            <div class="route-day"><strong>Day 2–3</strong>Wilpattu NP</div>
+            <div class="route-day"><strong>Day 4</strong>Sigiriya</div>
+            <div class="route-day"><strong>Day 5</strong>Minneriya</div>
+            <div class="route-day"><strong>Day 6–7</strong>Udawalawe</div>
+            <div class="route-day"><strong>Day 8</strong>Yala NP</div>
+            <div class="route-day"><strong>Day 9</strong>Mirissa Fly-Out</div>
+          </div>
+
+          <p class="pkg-desc">A big-game circuit through Sri Lanka's finest national parks — spotting leopards at Yala,
+            one of the planet's highest densities, wild elephants at Udawalawe, sloth bears at Wilpattu, and blue whales
+            off Mirissa on the final morning.</p>
+
+          <ul class="pkg-highlights">
+            <li>Wilpattu NP — leopards &amp; sloth bears</li>
+            <li>Minneriya Elephant Gathering (seasonal)</li>
+            <li>Udawalawe 600+ wild elephant herd</li>
+            <li>Yala NP — highest leopard density on Earth</li>
+            <li>Mirissa whale watching (blue &amp; sperm)</li>
+            <li>Sinharaja Rainforest half-day trek</li>
+            <li>Expert SLTDA-licensed naturalist guide</li>
+            <li>Jeep safaris included at all parks</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$1,349 <span class="per">/ person</span></div>
+              <div class="per">Based on 2 pax · Double occupancy</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Wildlife Safari Express (9 Days) — $1,349/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Wildlife Safari Express (9 Days) — $1,349/pax')">✉ Email
+                Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 3 — Luxury Pearl of the Indian Ocean (10 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card aos" data-category="luxury" id="luxury">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/tea-estate-walks-in-haputale-12.jpg"
+            alt="Luxury Resort Sri Lanka" />
+          <div class="pkg-badge luxury">Luxury</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Signature Luxury</span>
+          <h3>Pearl of the Indian Ocean</h3>
+          <p class="pkg-tagline"> private guides, heli-transfers, Michelin-calibre dining</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 10 Days / 9 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Fully Private</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> 5-Star Luxury</div>
+            <div class="pkg-meta-item">🚁 <span>Transfers:</span> Heli + Chauffeur</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1</strong>Colombo</div>
+            <div class="route-day"><strong>Day 2</strong>Sigiriya (Heli)</div>
+            <div class="route-day"><strong>Day 3</strong>Cultural Triangle</div>
+            <div class="route-day"><strong>Day 4–5</strong>Kandy</div>
+            <div class="route-day"><strong>Day 6</strong>Tea Country</div>
+            <div class="route-day"><strong>Day 7–8</strong>Yala (Safari)</div>
+            <div class="route-day"><strong>Day 9–10</strong>Galle Coast</div>
+          </div>
+
+          <p class="pkg-desc">Sri Lanka's most exclusive journey — helicopter transfers between regions, private butler
+            service, bespoke Ayurvedic spa rituals, chef's table dinners on Galle Fort walls, and a private sunrise
+            climb of Sigiriya before the crowds arrive.</p>
+
+          <ul class="pkg-highlights">
+            <li>Helicopter arrival to Sigiriya</li>
+            <li>Private dawn climb of Sigiriya Rock</li>
+            <li>Butler-service villa at each destination</li>
+            <li>Private chef &amp; bespoke dining experiences</li>
+            <li>Luxury Yala jeep safari at golden hour</li>
+            <li>Ayurvedic spa journey (2 nights)</li>
+            <li>Private Galle Fort after-hours tour</li>
+            <li>Dedicated 24/7 Pearl Heritage concierge</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$3,490 <span class="per">/ person</span></div>
+              <div class="per">Based on 2 pax · Includes helicopter leg</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Pearl of the Indian Ocean Luxury (10 Days) — $3,490/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Pearl of the Indian Ocean Luxury (10 Days) — $3,490/pax')">✉
+                Email Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 4 — Family Discovery (10 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card reverse aos" data-category="family" id="family">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Depositphotos_212902142_L-1080x720.jpg"
+            alt="Elephant Family" />
+          <div class="pkg-badge">Family</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Family &amp; Kids</span>
+          <h3>Family Discovery Sri Lanka</h3>
+          <p class="pkg-tagline">Wonder, wildlife &amp; beach days — designed for travellers aged 5 to 95</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 10 Days / 9 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Family Private</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> Comfort</div>
+            <div class="pkg-meta-item">👶 <span>Kids:</span> All Ages Welcome</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1</strong>Negombo</div>
+            <div class="route-day"><strong>Day 2</strong>Pinnawala</div>
+            <div class="route-day"><strong>Day 3</strong>Kandy</div>
+            <div class="route-day"><strong>Day 4</strong>Sigiriya</div>
+            <div class="route-day"><strong>Day 5</strong>Dambulla</div>
+            <div class="route-day"><strong>Day 6</strong>Udawalawe</div>
+            <div class="route-day"><strong>Day 7</strong>Mirissa</div>
+            <div class="route-day"><strong>Day 8–10</strong>Bentota Beach</div>
+          </div>
+
+          <p class="pkg-desc">Built for families with children — the itinerary balances age-appropriate adventure with
+            relaxation. From the Pinnawala Elephant Orphanage and hands-on cooking classes to beach days in Bentota and
+            snorkelling at Hikkaduwa Reef.</p>
+
+          <ul class="pkg-highlights">
+            <li>Pinnawala Elephant Orphanage</li>
+            <li>Kandy Temple of the Tooth</li>
+            <li>Interactive spice garden walk</li>
+            <li>Udawalawe elephant safari</li>
+            <li>Turtle conservation centre, Rekawa</li>
+            <li>Whale watching, Mirissa</li>
+            <li>Bentota River boat ride</li>
+            <li>Hikkaduwa coral reef snorkelling</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$989 <span class="per">/ person</span></div>
+              <div class="per">Based on family of 4 · Kids U12 discounted</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Family Discovery Sri Lanka (10 Days) — $989/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Family Discovery Sri Lanka (10 Days) — $989/pax')">✉ Email
+                Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 5 — Romantic Honeymoon Escape (9 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card aos" data-category="romance" id="honeymoon">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/romance-two1.webp" alt="Honeymoon Beach" />
+          <div class="pkg-badge popular">Honeymoon</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Romance &amp; Honeymoon</span>
+          <h3>Romantic Escape — Ceylon Dream</h3>
+          <p class="pkg-tagline">Sun-kissed beaches, candlelit dinners, private ocean villas — love, Sri Lanka style</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 9 Days / 8 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Couples Only</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> Luxury Comfort</div>
+            <div class="pkg-meta-item">💑 <span>Includes:</span> Romantic Touches</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1–2</strong>Colombo</div>
+            <div class="route-day"><strong>Day 3</strong>Kandy (train)</div>
+            <div class="route-day"><strong>Day 4</strong>Ella</div>
+            <div class="route-day"><strong>Day 5</strong>Yala</div>
+            <div class="route-day"><strong>Day 6</strong>Tangalle</div>
+            <div class="route-day"><strong>Day 7–9</strong>Galle / Weligama</div>
+          </div>
+
+          <p class="pkg-desc">Crafted for couples — sunset catamaran sails off Mirissa, couples Ayurvedic treatments, a
+            private dinner on a hilltop above Ella, and a last-night villa on the Galle clifftops watching the Indian
+            Ocean glow at dusk.</p>
+
+          <ul class="pkg-highlights">
+            <li>Scenic train Kandy → Ella (1st class reserved)</li>
+            <li>Couples Ayurvedic massage &amp; spa ritual</li>
+            <li>Private hilltop dinner above Ella</li>
+            <li>Sunset catamaran sail, Mirissa</li>
+            <li>Dawn hot-air balloon over Cultural Triangle</li>
+            <li>Private Galle Fort evening tour</li>
+            <li>Flower bath &amp; turndown surprises nightly</li>
+            <li>Complimentary anniversary / honeymoon setup</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$1,699 <span class="per">/ person</span></div>
+              <div class="per">Couples package · Pool villa upgrades included</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Romantic Ceylon Dream Honeymoon (9 Days) — $1,699/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Romantic Ceylon Dream Honeymoon (9 Days) — $1,699/pax')">✉
+                Email Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════
+         TOUR 6 — Adventure Rush (9 Days)
+    ══════════════════════════════════════════════ -->
+      <div class="pkg-card reverse aos" data-category="adventure" id="adventure">
+        <div class="pkg-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/caption.jpg" alt="Adventure Sri Lanka" />
+          <div class="pkg-badge">Adventure</div>
+        </div>
+        <div class="pkg-body">
+          <span class="label">Thrills &amp; Trails</span>
+          <h3>Adventure Rush Sri Lanka</h3>
+          <p class="pkg-tagline">Raft rivers, hike peaks, surf waves — Sri Lanka unplugged in 9 days</p>
+          <div class="pkg-meta">
+            <div class="pkg-meta-item">🗓 <span>Duration:</span> 9 Days / 8 Nights</div>
+            <div class="pkg-meta-item">👥 <span>Group:</span> Min 2 Pax</div>
+            <div class="pkg-meta-item">⭐ <span>Style:</span> Active / Budget-Comfort</div>
+            <div class="pkg-meta-item">🥾 <span>Fitness:</span> Moderate–High</div>
+          </div>
+
+          <div class="route-strip">
+            <div class="route-day"><strong>Day 1</strong>Colombo</div>
+            <div class="route-day"><strong>Day 2</strong>Kithulgala</div>
+            <div class="route-day"><strong>Day 3</strong>Knuckles Range</div>
+            <div class="route-day"><strong>Day 4</strong>Kandy</div>
+            <div class="route-day"><strong>Day 5</strong>Adam's Peak</div>
+            <div class="route-day"><strong>Day 6</strong>Ella / Horton Plains</div>
+            <div class="route-day"><strong>Day 7</strong>Arugam Bay</div>
+            <div class="route-day"><strong>Day 8–9</strong>Surf / Fly-Out</div>
+          </div>
+
+          <p class="pkg-desc">Grade 3–4 white-water rafting on the Kelani River, a pre-dawn pilgrimage hike up Adam's
+            Peak (2,243m), trekking through World's End at Horton Plains, and surfing the legendary right-hander at
+            Arugam Bay — Sri Lanka's adrenaline greatest hits.</p>
+
+          <ul class="pkg-highlights">
+            <li>White-water rafting — Kithulgala (Grade 3–4)</li>
+            <li>Knuckles Mountain Range trekking</li>
+            <li>Pre-dawn Adam's Peak summit hike (2,243m)</li>
+            <li>World's End cliff walk, Horton Plains NP</li>
+            <li>Nine Arch Bridge &amp; Little Adam's Peak, Ella</li>
+            <li>Surfing lessons at Arugam Bay</li>
+            <li>Zip-lining &amp; cliff-jumping included</li>
+            <li>All safety gear &amp; certified instructors</li>
+          </ul>
+
+
+
+          <div class="pkg-footer">
+            <div class="price-block">
+              <div class="from">From</div>
+              <div class="amount">$1,049 <span class="per">/ person</span></div>
+              <div class="per">Based on 2 pax · Activity gear included</div>
+            </div>
+            <div class="cta-btns">
+              <button class="btn-wa" onclick="bookWhatsApp('Adventure Rush Sri Lanka (9 Days) — $1,049/pax')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                WhatsApp
+              </button>
+              <button class="btn-email" onclick="bookEmail('Adventure Rush Sri Lanka (9 Days) — $1,049/pax')">✉ Email
+                Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Custom Build Banner ── -->
+      <div
+        style="background:var(--green);border-radius:var(--radius-lg);padding:3rem;text-align:center;color:white;margin-top:2rem">
+        <span
+          style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light)">Build
+          Your Own</span>
+        <h3 style="color:white;font-size:1.8rem;margin:0.5rem 0 1rem">Can't See Your Perfect Tour?</h3>
+        <p style="color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto 1.8rem;font-size:0.9rem">Every Pearl
+          Heritage tour can be extended, shortened, merged or built entirely from scratch. Tell us your dates, interests
+          and budget — we'll have a custom quote back within 24 hours.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <button class="btn-wa" onclick="bookWhatsApp('Custom / Bespoke Sri Lanka Tour — please advise')"
+            style="font-size:0.72rem;padding:0.85rem 1.8rem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            WhatsApp Us
+          </button>
+          <a href="contact.html" class="btn btn-gold" style="font-size:0.72rem;padding:0.85rem 1.8rem">Get a Custom
+            Quote →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/layout.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // ── WhatsApp booking ──────────────────────────────
+    function bookWhatsApp(tourName) {
+      const msg = encodeURIComponent(
+        "Hello Pearl Heritage Tours! 👋\n\n" +
+        "I'm interested in the following tour:\n" +
+        "📦 *" + tourName + "*\n\n" +
+        "Could you please send me more details, availability and a personalised quote? Thank you!"
+      );
+      window.open('https://wa.me/94771234567?text=' + msg, '_blank');
+    }
+
+    // ── Email booking ─────────────────────────────────
+    function bookEmail(tourName) {
+      const subject = encodeURIComponent('Tour Enquiry — ' + tourName);
+      const body = encodeURIComponent(
+        "Hello Pearl Heritage Tours,\n\n" +
+        "I am interested in the following tour package:\n" +
+        tourName + "\n\n" +
+        "My details:\n" +
+        "Name: \n" +
+        "Travel Dates: \n" +
+        "Number of Adults: \n" +
+        "Number of Children: \n" +
+        "Nationality: \n" +
+        "Budget Preference: \n\n" +
+        "Additional requests or questions:\n\n\n" +
+        "Please send me availability and a personalised quote.\n\n" +
+        "Thank you!"
+      );
+      window.location.href = 'mailto:info@pearlheritagetours.com?subject=' + subject + '&body=' + body;
+    }
+
+    // ── Filter ────────────────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.pkg-card').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

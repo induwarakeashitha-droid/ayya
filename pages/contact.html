@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Booking — Blooming Smiles Sri Lanka</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media(max-width:900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-form-wrap h3 {
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    @media(max-width:600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-section-title {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin: 1.8rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #EDE8DC;
+    }
+
+    .contact-info-card {
+      padding: 2rem;
+      background: var(--green);
+      border-radius: var(--radius-lg);
+      color: white;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info-card h4 {
+      color: var(--gold-light);
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info-item .ci-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info-item .ci-text {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    .contact-info-item .ci-text strong {
+      color: white;
+      display: block;
+      font-family: var(--font-ui);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+
+    .wa-big-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #25D366;
+      color: white;
+      padding: 1.2rem 1.8rem;
+      border-radius: var(--radius-lg);
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 1.5rem;
+    }
+
+    .wa-big-btn:hover {
+      background: #1db954;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    }
+
+    .wa-big-btn svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="nav-placeholder"></div>
+
+  <div class="page-hero">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80" alt="Contact" />
+    <div class="page-hero-content">
+      <span class="label">We'd Love to Hear From You</span>
+      <h1>Get In <em>Touch</em></h1>
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>Contact</div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream)">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap aos">
+          <span class="label" style="color:var(--gold)">Tour Enquiry</span>
+          <h3>Plan Your <em>Sri Lanka Journey</em></h3>
+          <p style="font-size:0.88rem;margin-bottom:0.5rem">Fill in the form below and we'll get back to you within 24
+            hours with a personalised proposal.</p>
+
+          <form id="booking-form">
+
+            <div class="form-section-title">Your Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" class="form-control" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" class="form-control" name="email" placeholder="you@email.com" required />
+              </div>
+            </div>
+            <div class="form-row" style="margin-top:1rem">
+              <div class="form-group">
+                <label>WhatsApp Number *</label>
+                <input type="tel" class="form-control" name="whatsapp" placeholder="+1 555 000 0000" required />
+                <small style="color:var(--text-light);font-size:0.75rem;margin-top:0.3rem">Include country code — we'll
+                  confirm by WhatsApp</small>
+              </div>
+              <div class="form-group">
+                <label>Nationality</label>
+                <input type="text" class="form-control" name="nationality" placeholder="e.g. British" />
+              </div>
+            </div>
+
+            <div class="form-section-title">Trip Details</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Tour / Itinerary Interested In</label>
+                <select class="form-control" name="tour">
+                  <option value="">— Select Tour Type —</option>
+                  <optgroup label="Day Tours">
+                    <option>Day Tour of Colombo</option>
+                    <option>Galle Day Tour</option>
+                    <option>Geoffrey Bawa Works</option>
+                    <option>Hot Air Ballooning</option>
+                    <option>Kandy Day Tour</option>
+                    <option>Kithulgala White Water Rafting</option>
+                    <option>Little England Day Tour</option>
+                    <option>Sigiriya & Dambulla</option>
+                    <option>Whale Watching</option>
+                    <option>Yala National Park</option>
+                    <option>Udawalawe National Park</option>
+                    <option>Wilpattu National Park</option>
+                  </optgroup>
+                  <optgroup label="Multi-Day Itineraries">
+                    <option>Adventure & Nature Tour</option>
+                    <option>Culture & Heritage Tour</option>
+                    <option>Family Tour</option>
+                    <option>Luxury Bespoke Tour</option>
+                    <option>North & East Coast Tour</option>
+                    <option>Wildlife Tour</option>
+                    <option>Sustainable Tour</option>
+                    <option>Wellness / Ayurveda Tour</option>
+                    <option>Sports Based Tour</option>
+                    <option>Special Transit Tour</option>
+                    <option>Romantic / Honeymoon Tour</option>
+                    <option>Purpose Built / Custom</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Preferred Travel Date</label>
+                <input type="date" class="form-control" name="date" />
+              </div>
+            </div>
+            <div class="form-row" style="margin-top:1rem">
+              <div class="form-group">
+                <label>Number of Adults</label>
+                <select class="form-control" name="adults">
+                  <option>1</option>
+                  <option selected>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9–12</option>
+                  <option>13–20</option>
+                  <option>21–30</option>
+                  <option>31–45</option>
+                  <option>46+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Number of Children</label>
+                <select class="form-control" name="children">
+                  <option>0</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4+</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row" style="margin-top:1rem">
+              <div class="form-group">
+                <label>Tour Duration</label>
+                <select class="form-control" name="duration">
+                  <option>Half Day (4 hrs)</option>
+                  <option>Full Day (8–10 hrs)</option>
+                  <option>2–3 Days</option>
+                  <option>4–6 Days</option>
+                  <option>7–10 Days</option>
+                  <option>11–14 Days</option>
+                  <option>15–21 Days</option>
+                  <option>Flexible</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Budget Per Person (USD)</label>
+                <select class="form-control" name="budget">
+                  <option>Budget (under $100/day)</option>
+                  <option>Mid-Range ($100–$200/day)</option>
+                  <option>Comfort ($200–$350/day)</option>
+                  <option>Luxury ($350+/day)</option>
+                  <option>Flexible</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Vehicle Selector -->
+            <div class="form-section-title">Vehicle Preference</div>
+            <div class="vehicle-selector" style="padding:1.5rem">
+              <p style="font-size:0.82rem;color:rgba(255,255,255,0.7);margin-bottom:0.5rem">Select your preferred
+                vehicle. A car is the minimum — tuk tuks for city tours only.</p>
+              <div class="vehicle-grid">
+                <div class="vehicle-option" data-vehicle="car">
+                  <div class="v-minimum">Min</div>
+                  <div class="v-icon">🚗</div>
+                  <div class="v-name">Car/SUV</div>
+                  <div class="v-pax">1–3</div>
+                </div>
+                <div class="vehicle-option" data-vehicle="van">
+                  <div class="v-icon">🚐</div>
+                  <div class="v-name">KDH Van</div>
+                  <div class="v-pax">4–8</div>
+                </div>
+                <div class="vehicle-option" data-vehicle="coaster">
+                  <div class="v-icon">🚌</div>
+                  <div class="v-name">Coaster</div>
+                  <div class="v-pax">9–25</div>
+                </div>
+                <div class="vehicle-option" data-vehicle="bus">
+                  <div class="v-icon">🚎</div>
+                  <div class="v-name">Coach Bus</div>
+                  <div class="v-pax">26–45</div>
+                </div>
+
+              </div>
+              <div id="vehicle-info"></div>
+            </div>
+
+            <!-- Guide Selector -->
+            <div class="form-section-title">Guide Preference</div>
+            <div class="guide-toggle">
+              <div class="guide-option active" data-guide="guide">
+                <div class="g-icon">🧭</div>
+                <div class="g-title">Driver + Expert Guide</div>
+                <div class="g-desc">Licensed, multi-lingual tour guide plus professional driver. Maximum experience.
+                </div>
+              </div>
+              <div class="guide-option" data-guide="driver">
+                <div class="g-icon">🚗</div>
+                <div class="g-title">Driver Only</div>
+                <div class="g-desc">English-speaking professional driver. Explore independently at your own pace.</div>
+              </div>
+            </div>
+
+            <div class="form-section-title">Special Requests</div>
+            <div class="form-group">
+              <label>Additional Notes / Requests</label>
+              <textarea class="form-control" name="notes" rows="4"
+                placeholder="Any dietary requirements, special occasions, accessibility needs, must-see places or other wishes..."></textarea>
+            </div>
+
+            <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+              <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center">
+                📲 Send via WhatsApp
+              </button>
+              <button type="button" class="btn btn-dark" style="flex:1;justify-content:center" onclick="sendEmail()">
+                ✉ Send by Email
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="aos aos-delay-2">
+          <div class="wa-big-btn"
+            onclick="window.open('https://wa.me/94768329877?text=Hello!%20I%27d%20like%20to%20enquire%20about%20a%20Sri%20Lanka%20tour.','_blank')">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Chat on WhatsApp Now
+          </div>
+
+          <div class="contact-info-card">
+            <h4>Contact Information</h4>
+            <div class="contact-info-item">
+              <div class="ci-icon">📱</div>
+              <div class="ci-text"><strong>WhatsApp / Phone</strong>+94 76 832 9877</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon">✉</div>
+              <div class="ci-text"><strong>Email</strong>Induwarakeashitha@icloud.com</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon">📍</div>
+              <div class="ci-text"><strong>Office</strong>Kurunegala, Sri Lanka</div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon">🕐</div>
+              <div class="ci-text"><strong>Office Hours</strong>Mon–Sat: 8:00 AM – 7:00 PM (Sri Lanka Time, UTC+5:30)
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="background:var(--white);border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow);margin-bottom:1.5rem">
+            <div class="label" style="color:var(--gold);margin-bottom:1rem">Why Book With Us</div>
+            <ul style="display:flex;flex-direction:column;gap:0.8rem">
+              <li style="font-size:0.88rem;color:var(--text-mid);display:flex;gap:0.6rem"><span
+                  style="color:var(--gold)">✦</span> Free, no-obligation quote within 24 hours</li>
+              <li style="font-size:0.88rem;color:var(--text-mid);display:flex;gap:0.6rem"><span
+                  style="color:var(--gold)">✦</span> 100% private tours — never shared with strangers</li>
+              <li style="font-size:0.88rem;color:var(--text-mid);display:flex;gap:0.6rem"><span
+                  style="color:var(--gold)">✦</span> Flexible cancellation — weather &amp; COVID-friendly</li>
+              <li style="font-size:0.88rem;color:var(--text-mid);display:flex;gap:0.6rem"><span
+                  style="color:var(--gold)">✦</span> Licensed, insured vehicles and SLTDA guides</li>
+              <li style="font-size:0.88rem;color:var(--text-mid);display:flex;gap:0.6rem"><span
+                  style="color:var(--gold)">✦</span> 24/7 WhatsApp support during your tour</li>
+            </ul>
+          </div>
+
+          <div
+            style="background:var(--cream-dark);border-radius:var(--radius-lg);padding:1.5rem;border-left:3px solid var(--gold)">
+            <div class="label" style="color:var(--gold-dark);margin-bottom:0.5rem">Vehicle Policy</div>
+            <p style="font-size:0.82rem;color:var(--text-mid);margin:0">A <strong>car or SUV is the minimum
+                vehicle</strong> for all tours. Tuk tuks are available for selected city-only experiences. Groups of
+              9–25 will require a Coaster; 26+ require a full Coach Bus. We never overload vehicles.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="../js/layout.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    function sendEmail() {
+      const form = document.getElementById('booking-form');
+      const data = new FormData(form);
+      const subject = encodeURIComponent('Sri Lanka Tour Enquiry — ' + (data.get('tour') || 'General'));
+      const body = encodeURIComponent(
+        `Name: ${data.get('name')}\nEmail: ${data.get('email')}\nWhatsApp: ${data.get('whatsapp')}\nTour: ${data.get('tour')}\nDate: ${data.get('date')}\nAdults: ${data.get('adults')}\nChildren: ${data.get('children')}\nDuration: ${data.get('duration')}\nBudget: ${data.get('budget')}\nNotes: ${data.get('notes')}`
+      );
+      window.location.href = `mailto:info@bloomingsmiles.lk?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+
+</html>

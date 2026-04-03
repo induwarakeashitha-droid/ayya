@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Itineraries — PearlHeritageTours.com</title>
+<link rel="stylesheet" href="../css/main.css"/>
+<style>
+.itinerary-hero-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-bottom: 5rem; }
+.itin-card {
+  position: relative; border-radius: var(--radius-lg); overflow: hidden;
+  height: 320px; cursor: pointer;
+}
+.itin-card img { width:100%; height:100%; object-fit:cover; filter:brightness(0.68); transition: transform 0.6s; }
+.itin-card:hover img { transform: scale(1.06); }
+.itin-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,30,20,0.8) 0%, transparent 55%); }
+.itin-info { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; color: white; }
+.itin-info .label { color: var(--gold-light); margin-bottom: 0.4rem; }
+.itin-info h3 { color: white; font-size: 1.3rem; }
+.itin-info p { font-size: 0.82rem; color: rgba(255,255,255,0.78); margin: 0.3rem 0 0; }
+@media(max-width:900px){ .itinerary-hero-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:500px){ .itinerary-hero-grid { grid-template-columns: 1fr; } }
+
+.itin-section { padding: 5rem 0; border-top: 1px solid #EDE8DC; }
+.itin-section-header { display: flex; align-items: flex-start; gap: 2rem; margin-bottom: 2.5rem; }
+.itin-icon { font-size: 3rem; flex-shrink: 0; }
+.itin-section-header h2 { color: var(--green); }
+.itin-section-header p { color: var(--text-mid); margin-top: 0.5rem; }
+.day-list { counter-reset: day; }
+.day-item { display: flex; gap: 1.5rem; margin-bottom: 1.2rem; padding: 1.2rem; background: var(--white); border-radius: var(--radius); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.day-num { width: 40px; height: 40px; background: var(--green); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; flex-shrink: 0; }
+.day-content h5 { color: var(--green); font-family: var(--font-ui); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
+.day-content p { font-size: 0.86rem; margin: 0; }
+.itin-price-bar { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; padding: 1.2rem 1.5rem; background: var(--cream-dark); border-radius: var(--radius); margin-top: 1.5rem; }
+.itin-price-bar .price { font-family: var(--font-display); font-size: 1.8rem; color: var(--green); }
+.itin-price-bar .price-note { font-size: 0.8rem; color: var(--text-mid); }
+.itin-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.tag { padding: 0.25rem 0.8rem; border-radius: 20px; font-family: var(--font-ui); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.tag-green { background: #E8F5E9; color: var(--green-mid); }
+.tag-gold { background: #FFF8E1; color: var(--gold-dark); }
+.tag-blue { background: #E3F2FD; color: #1565C0; }
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <img src="https://69cd03b887c4a0b6216caad2.imgix.net/0b99784b7a9b2c0a53eecd8b75313203ce17c4052879c81c68fd45872f37c7ed.webp" alt="Sri Lanka Itineraries"/>
+  <div class="page-hero-content">
+    <span class="label">Crafted for Every Traveller</span>
+    <h1>Sri Lanka <em>Itineraries</em></h1>
+    <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>Itineraries</div>
+  </div>
+</div>
+
+<section class="section" style="background:var(--cream)">
+  <div class="container">
+
+    <!-- Hero Grid -->
+    <div class="section-header aos">
+      <span class="label">Choose Your Journey</span>
+      <h2>Tours Crafted for <em>Every Style</em></h2>
+      <div class="divider"></div>
+      <p>All itineraries are 100% private and tailor-made. Dates, pace, accommodation and vehicles adapt to you.</p>
+    </div>
+
+    <div class="itinerary-hero-grid">
+      <div class="itin-card aos" onclick="location.href='#adventure'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/R%20(3).jpg" alt="Adventure"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">Thrills</span><h3>Adventure & Nature</h3><p>Rafting · Trekking · Surfing</p></div>
+      </div>
+      <div class="itin-card aos aos-delay-1" onclick="location.href='#culture'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/dbf559066b6ed04765205a8f7f9cc616fb2f2c9ea10a387c3da75b9cbc7f8373.webp" alt="Culture"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">Heritage</span><h3>Culture & Heritage</h3><p>Temples · Forts · Living History</p></div>
+      </div>
+      <div class="itin-card aos aos-delay-2" onclick="location.href='#luxury'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(22).webp" alt="Luxury"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">5-Star</span><h3>Luxury Bespoke</h3><p>Private Villas · Heli Tours · Butler Service</p></div>
+      </div>
+      <div class="itin-card aos" onclick="location.href='#wildlife'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Yala-national-park-closure%20(1).jpg" alt="Wildlife"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">Safari</span><h3>Wildlife Tours</h3><p>Leopards · Elephants · Whales</p></div>
+      </div>
+      <div class="itin-card aos aos-delay-1" onclick="location.href='#family'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Depositphotos_212902142_L-1080x720.jpg" alt="Family"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">All Ages</span><h3>Family Tours</h3><p>Kid-Friendly · Beach · Animals</p></div>
+      </div>
+      <div class="itin-card aos aos-delay-2" onclick="location.href='#romantic'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/lou-lou-b-photo-xSI-8hwyUzE-unsplash.jpg" alt="Romantic"/>
+        <div class="itin-overlay"></div>
+        <div class="itin-info"><span class="label">Couples</span><h3>Romantic Tours</h3><p>Honeymoon · Sunset Dinners · Spas</p></div>
+      </div>
+    </div>
+
+    <!-- ── ADVENTURE ─────────────────────────────────── -->
+    <div class="itin-section aos" id="adventure">
+      <div class="itin-section-header">
+        <div class="itin-icon">🏔️</div>
+        <div>
+          <span class="label" style="color:var(--gold)">Thrills & Nature</span>
+          <h2>Adventure &amp; Nature <em>Tours</em></h2>
+          <p>From Grade 4 rapids to whale watching, zip-lining and jungle treks — Sri Lanka is an adventurer's playground.</p>
+          <div class="itin-tags">
+            <span class="tag tag-green">10–14 Days</span>
+            <span class="tag tag-gold">All Fitness Levels</span>
+            <span class="tag tag-blue">Year Round</span>
+          </div>
+        </div>
+      </div>
+      <div class="day-list">
+        <div class="day-item"><div class="day-num">1</div><div class="day-content"><h5>Day 1–2 · Colombo & Arrival</h5><p>Hotel check-in, city orientation and welcome dinner. Transfer to Kithulgala.</p></div></div>
+        <div class="day-item"><div class="day-num">2</div><div class="day-content"><h5>Day 3 · Kithulgala Rafting</h5><p>White water rafting on Kelani River, cliff jumping and waterfall hike.</p></div></div>
+        <div class="day-item"><div class="day-num">3</div><div class="day-content"><h5>Day 4–5 · Horton Plains & Adam's Peak</h5><p>Sunrise hike to Adam's Peak (5,200 steps) and World's End cliff at Horton Plains.</p></div></div>
+        <div class="day-item"><div class="day-num">4</div><div class="day-content"><h5>Day 6 · Ella Rock Hike</h5><p>Train to Ella, trek Ella Rock and Little Adam's Peak, Nine Arch Bridge sunset.</p></div></div>
+        <div class="day-item"><div class="day-num">5</div><div class="day-content"><h5>Day 7–8 · Yala Safari</h5><p>Two game drives in Yala — leopards, sloth bears, elephants, crocodiles.</p></div></div>
+        <div class="day-item"><div class="day-num">6</div><div class="day-content"><h5>Day 9 · Mirissa Whale Watching</h5><p>Early morning boat for blue whales &amp; dolphins in the Indian Ocean.</p></div></div>
+        <div class="day-item"><div class="day-num">7</div><div class="day-content"><h5>Day 10 · Surfing at Hikkaduwa</h5><p>Surf lesson or reef snorkelling at one of Sri Lanka's best surf spots.</p></div></div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 980</div><div class="price-note">per person, based on 2 pax sharing</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Enquire Now</a>
+        <a href="../pages/contact.html" class="btn btn-dark">Customise This Tour</a>
+      </div>
+    </div>
+
+    <!-- ── CULTURE ───────────────────────────────────── -->
+    <div class="itin-section aos" id="culture">
+      <div class="itin-section-header">
+        <div class="itin-icon">🏛️</div>
+        <div>
+          <span class="label" style="color:var(--gold)">Living History</span>
+          <h2>Culture &amp; Heritage <em>Tours</em></h2>
+          <p>Sri Lanka has been continuously inhabited for over 35,000 years. This tour walks you through every chapter.</p>
+          <div class="itin-tags">
+            <span class="tag tag-green">7–12 Days</span>
+            <span class="tag tag-gold">UNESCO Heritage</span>
+            <span class="tag tag-blue">All Year</span>
+          </div>
+        </div>
+      </div>
+      <div class="day-list">
+        <div class="day-item"><div class="day-num">1</div><div class="day-content"><h5>Day 1 · Colombo Colonial Trail</h5><p>Pettah market, National Museum, Gangaramaya Temple, Galle Face.</p></div></div>
+        <div class="day-item"><div class="day-num">2</div><div class="day-content"><h5>Day 2–3 · Anuradhapura</h5><p>Ancient capital with stupas, moonstone carvings and the sacred Sri Maha Bodhi tree.</p></div></div>
+        <div class="day-item"><div class="day-num">3</div><div class="day-content"><h5>Day 4 · Sigiriya &amp; Polonnaruwa</h5><p>Rock citadel, cave temples, medieval royal city with colossal Buddha statues.</p></div></div>
+        <div class="day-item"><div class="day-num">4</div><div class="day-content"><h5>Day 5–6 · Kandy &amp; Hill Country</h5><p>Temple of the Tooth, Royal Botanical Gardens, traditional Kandyan dance.</p></div></div>
+        <div class="day-item"><div class="day-num">5</div><div class="day-content"><h5>Day 7 · Galle Fort</h5><p>Dutch colonial architecture, lighthouse, boutique galleries, sunset rampart walk.</p></div></div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 750</div><div class="price-note">per person, based on 2 pax sharing</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Enquire Now</a>
+      </div>
+    </div>
+
+    <!-- ── LUXURY ─────────────────────────────────────── -->
+    <div class="itin-section aos" id="luxury">
+      <div class="itin-section-header">
+        <div class="itin-icon">✨</div>
+        <div>
+          <span class="label" style="color:var(--gold)">Five Star</span>
+          <h2>Luxury Bespoke <em>Tours</em></h2>
+          <p>Private villas, helicopter transfers, Michelin-calibre dining, butler service and exclusive experiences no one else gets.</p>
+          <div class="itin-tags">
+            <span class="tag tag-gold">Fully Bespoke</span>
+            <span class="tag tag-green">5-Star Hotels</span>
+            <span class="tag tag-blue">Private Only</span>
+          </div>
+        </div>
+      </div>
+      <div class="day-list">
+        <div class="day-item"><div class="day-num">1</div><div class="day-content"><h5>Day 1 · Private Arrival</h5><p>Luxury vehicle transfer, welcome at Heritance Negombo or equivalent 5-star resort.</p></div></div>
+        <div class="day-item"><div class="day-num">2</div><div class="day-content"><h5>Day 2–3 · Hot Air Balloon &amp; Cultural Triangle</h5><p>Sunrise balloon over temples, Sigiriya by private guide, exclusive sundowner at Heritance Kandalama.</p></div></div>
+        <div class="day-item"><div class="day-num">3</div><div class="day-content"><h5>Day 4–5 · Private Tea Estate</h5><p>Stay in a restored tea planter's bungalow, private tea trail, plunge pool and in-house chef.</p></div></div>
+        <div class="day-item"><div class="day-num">4</div><div class="day-content"><h5>Day 6–7 · Luxury Beach Villa</h5><p>Private beach villa on the south coast, snorkelling, fishing and sunset dinner on the beach.</p></div></div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 3,200</div><div class="price-note">per person, 7 nights based on 2 pax</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Request Proposal</a>
+      </div>
+    </div>
+
+    <!-- ── WILDLIFE ────────────────────────────────────── -->
+    <div class="itin-section aos" id="wildlife">
+      <div class="itin-section-header">
+        <div class="itin-icon">🐘</div>
+        <div>
+          <span class="label" style="color:var(--gold)">Safari & Ocean</span>
+          <h2>Wildlife <em>Tours</em></h2>
+          <p>Sri Lanka is one of the world's great wildlife destinations — five national parks, whale watching and endemic birds.</p>
+          <div class="itin-tags">
+            <span class="tag tag-green">8–12 Days</span>
+            <span class="tag tag-gold">Expert Naturalist</span>
+            <span class="tag tag-blue">Nov–May Best</span>
+          </div>
+        </div>
+      </div>
+      <div class="day-list">
+        <div class="day-item"><div class="day-num">1</div><div class="day-content"><h5>Days 1–2 · Wilpattu National Park</h5><p>Sri Lanka's largest park — leopards in villa (wewa) grassland habitats.</p></div></div>
+        <div class="day-item"><div class="day-num">2</div><div class="day-content"><h5>Days 3–4 · Minneriya / Kaudulla</h5><p>The famous "Elephant Gathering" — 300+ elephants in one location July–October.</p></div></div>
+        <div class="day-item"><div class="day-num">3</div><div class="day-content"><h5>Days 5–6 · Yala Block 1</h5><p>Highest leopard concentration on Earth. Dawn and dusk jeep drives.</p></div></div>
+        <div class="day-item"><div class="day-num">4</div><div class="day-content"><h5>Day 7 · Udawalawe Elephant Transit Home</h5><p>Watch orphaned elephant calves fed by keepers, then evening game drive.</p></div></div>
+        <div class="day-item"><div class="day-num">5</div><div class="day-content"><h5>Day 8 · Mirissa Whale Watching</h5><p>Blue whale sunrise encounter and spinner dolphin pods.</p></div></div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 1,250</div><div class="price-note">per person, based on 2 pax sharing</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Enquire Now</a>
+      </div>
+    </div>
+
+    <!-- ── FAMILY ─────────────────────────────────────── -->
+    <div class="itin-section aos" id="family">
+      <div class="itin-section-header">
+        <div class="itin-icon">👨‍👩‍👧‍👦</div>
+        <div>
+          <span class="label" style="color:var(--gold)">All Ages Welcome</span>
+          <h2>Family <em>Tours</em></h2>
+          <p>Sri Lanka is magical for children — elephants, tuk tuks, tropical beaches and friendly locals make it unforgettable.</p>
+          <div class="itin-tags">
+            <span class="tag tag-green">7–14 Days</span>
+            <span class="tag tag-gold">Child-Friendly Hotels</span>
+            <span class="tag tag-blue">All Year</span>
+          </div>
+        </div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 680</div><div class="price-note">per person, family of 4</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Enquire Now</a>
+      </div>
+    </div>
+
+    <!-- ── ROMANTIC ────────────────────────────────────── -->
+    <div class="itin-section aos" id="romantic">
+      <div class="itin-section-header">
+        <div class="itin-icon">💫</div>
+        <div>
+          <span class="label" style="color:var(--gold)">Honeymoon & Couples</span>
+          <h2>Romantic <em>Tours</em></h2>
+          <p>Sri Lanka is one of the world's most romantic destinations — private beaches, candlelit dinners, sunset cruises and jungle spa retreats.</p>
+          <div class="itin-tags">
+            <span class="tag tag-gold">Honeymoon Specialists</span>
+            <span class="tag tag-green">Private Only</span>
+            <span class="tag tag-blue">Year Round</span>
+          </div>
+        </div>
+      </div>
+      <div class="itin-price-bar">
+        <div><div class="price">From USD 1,100</div><div class="price-note">per couple, 8 nights</div></div>
+        <a href="../pages/contact.html" class="btn btn-gold">Plan Your Honeymoon</a>
+      </div>
+    </div>
+
+    <!-- Additional Types - compact -->
+    <div class="grid-3 aos" style="margin-top:3rem">
+      <div class="card" id="north"><div class="card-img"><img src="https://69cd03b887c4a0b6216caad2.imgix.net/low_visitor_occupancy_season.jpg" alt="North Coast"/><span class="badge">Hidden Gem</span></div><div class="card-body"><h4>North &amp; East Coast Tours</h4><p>Jaffna's Tamil culture, Trincomalee beaches, Point Pedro and the largely undiscovered north.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">From USD 850/pax</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Enquire →</a></div></div>
+      <div class="card" id="wellness"><div class="card-img"><img src="https://69cd03b887c4a0b6216caad2.imgix.net/62.jpg" alt="Wellness"/><span class="badge">Rejuvenate</span></div><div class="card-body"><h4>Wellness &amp; Ayurveda Tours</h4><p>Ayurvedic retreats, jungle yoga, meditation and traditional healing at hill country spa resorts.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">From USD 950/pax</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Enquire →</a></div></div>
+      <div class="card" id="sustainable"><div class="card-img"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Sustainable"/><span class="badge">Eco Travel</span></div><div class="card-body"><h4>Sustainable Tours</h4><p>Carbon-conscious itineraries supporting local communities, eco-lodges and conservation projects.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">From USD 720/pax</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Enquire →</a></div></div>
+      <div class="card" id="sports"><div class="card-img"><img src="https://69cd03b887c4a0b6216caad2.imgix.net/caption.jpg" alt="Sports"/><span class="badge">Active</span></div><div class="card-body"><h4>Sports Based Tours</h4><p>Cricket pilgrimages, surfing circuits, hiking expeditions and cycle touring across the island.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">From USD 680/pax</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Enquire →</a></div></div>
+      <div class="card" id="transit"><div class="card-img"><img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(24).webp" alt="Transit"/><span class="badge">Stopover</span></div><div class="card-body"><h4>Special Transit Tours</h4><p>Make the most of a Colombo layover — curated 1, 2 and 3-day transit experiences.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">From USD 120/pax</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Enquire →</a></div></div>
+      <div class="card"><div class="card-img"><img src="https://69cd03b887c4a0b6216caad2.imgix.net/OIP%20(12).webp" alt="Purpose Built"/><span class="badge" style="background:var(--gold)">Exclusive</span></div><div class="card-body"><h4>Purpose Built Tours</h4><p>Fully custom itineraries built from zero for corporate groups, special events and unique requirements.</p></div><div class="card-footer"><span class="label" style="color:var(--gold)">Bespoke Pricing</span><a href="../pages/contact.html" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Request →</a></div></div>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="../js/layout.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pearl Heritage Tours- Make the Sri Lanka experience unforgettable</title>
+<meta name="description" content="Award-winning Sri Lanka tour operator. Tailor-made tours, day tours, luxury itineraries and DMC services across the Pearl of the Indian Ocean."/>
+<link rel="stylesheet" href="css/main.css"/>
+<style>
+  .booking-panel {
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 92%; max-width: 1100px;
+    background: rgba(255,255,255,0.96);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-radius: 12px 12px 0 0;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+    z-index: 20;
+  }
+  .booking-panel-title {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+  }
+  .booking-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+  }
+  @media(max-width:900px){ .booking-row { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:768px){ 
+    .hero-slide { height: auto; min-height: 100vh; display: flex; flex-direction: column; overflow: visible; }
+    .slide-track { height: 75vh; min-height: 500px; }
+    .booking-panel { position: relative; transform: none; left: auto; width: 100%; border-radius: 0; padding: 2rem 1.2rem; }
+  }
+  @media(max-width:500px){ .booking-row { grid-template-columns: 1fr; } }
+
+  /* ── FEATURES STRIP ─────────────────── */
+  .features-strip {
+    background: var(--green);
+    padding: 2.5rem 2rem;
+  }
+  .features-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+  .feature-item .fi-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+  .feature-item .fi-title {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+  }
+  .feature-item p { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin: 0; }
+  @media(max-width:768px){ .features-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* ── DESTINATIONS ───────────────────── */
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+  .dest-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .dest-card.featured { grid-column: span 2; grid-row: span 2; }
+  .dest-card img { width: 100%; height: 100%; object-fit: cover; min-height: 220px; transition: transform 0.6s ease; filter: brightness(0.75); }
+  .dest-card.featured img { min-height: 460px; }
+  .dest-card:hover img { transform: scale(1.06); }
+  .dest-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15,30,20,0.75) 0%, transparent 55%);
+  }
+  .dest-card-info {
+    position: absolute;
+    bottom: 1.2rem; left: 1.2rem; right: 1.2rem;
+    color: white;
+  }
+  .dest-card-info .label { color: var(--gold-light); margin-bottom: 0.3rem; }
+  .dest-card-info h3 { font-size: 1.2rem; color: white; }
+  .dest-card.featured .dest-card-info h3 { font-size: 2rem; }
+  @media(max-width:900px){ .dest-grid { grid-template-columns: 1fr 1fr; } .dest-card.featured { grid-column: span 2; grid-row: span 1; } .dest-card.featured img { min-height: 280px; } }
+  @media(max-width:500px){ .dest-grid { grid-template-columns: 1fr; } .dest-card.featured { grid-column: span 1; } }
+
+  /* ── STATS BAR ──────────────────────── */
+  .stats-bar {
+    background: var(--cream-dark);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .stats-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-item .stat-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--green);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .stat-item .stat-label {
+    font-family: var(--font-ui);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: 0.4rem;
+  }
+  @media(max-width:600px){ .stats-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* ── TAILOR MADE SECTION ─────────────── */
+  .tailor-section {
+    background: var(--green);
+    padding: 6rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .tailor-section::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: rgba(201,169,110,0.07);
+  }
+  .tailor-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .tailor-inner h2 { color: var(--white); font-style: italic; }
+  .tailor-inner p { color: rgba(255,255,255,0.72); }
+  .tailor-img { border-radius: var(--radius-lg); overflow: hidden; }
+  .tailor-img img { width: 100%; height: 480px; object-fit: cover; }
+  @media(max-width:900px){ .tailor-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+  /* ── POPULAR TOURS ───────────────────── */
+  .tour-badge-popular { background: #E8F5E9; color: var(--green-mid); }
+  .tour-badge-adventure { background: #FFF3E0; color: #E65100; }
+  .tour-badge-wildlife { background: #F3E5F5; color: #6A1B9A; }
+  .tour-badge-luxury { background: #FFF8E1; color: var(--gold-dark); }
+
+  /* ── TESTIMONIALS ───────────────────── */
+  .testimonial-section { background: var(--cream-dark); }
+  .testimonial-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+  .testimonial-card .stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.8rem; }
+  .testimonial-card blockquote { font-family: var(--font-display); font-size: 1.1rem; font-style: italic; color: var(--green); line-height: 1.6; margin-bottom: 1rem; }
+  .testimonial-card cite { font-family: var(--font-ui); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); font-style: normal; }
+
+  /* ── VEHICLE BOOKING SECTION ────────── */
+  .vehicle-section { background: var(--cream-dark); }
+</style>
+</head>
+<body>
+
+<!-- NAV PLACEHOLDER -->
+<div id="nav-placeholder"></div>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO SLIDESHOW
+═════════════════════════════════════════════════════════ -->
+<section class="hero-slide">
+  <div class="slide-track">
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/sigiriya-best-things-to-do.jpg" alt="Sigiriya Rock Fortress Sri Lanka"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">The Pearl of the Indian Ocean</span>
+        <h1>Ancient Wonders<br><em>of Sri Lanka</em></h1>
+        <p>Climb Sigiriya's legendary rock fortress and walk through 5,000 years of living history.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#sigiriya" class="btn btn-gold">Explore Tour</a>
+          <a href="pages/itineraries.html#culture" class="btn btn-outline">Culture Tours</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Whale-watching-safari-Mirissa-930-940x585-c-default.jpg" alt="Blue whale watching in Sri Lanka"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">Ocean Adventures</span>
+        <h1>Whale Watching<br><em>in Mirissa</em></h1>
+        <p>Witness the world's largest animals — blue whales and sperm whales — in their natural habitat.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#whale" class="btn btn-gold">Book This Tour</a>
+          <a href="pages/itineraries.html#adventure" class="btn btn-outline">Adventure Tours</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Yala-national-park-closure%20(1).jpg" alt="Elephant at Yala National Park"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">Wildlife Encounters</span>
+        <h1>Safari at<br><em>Yala & Wilpattu</em></h1>
+        <p>Track leopards, elephants and rare birds through Sri Lanka's legendary national parks.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#yala" class="btn btn-gold">Safari Tours</a>
+          <a href="pages/itineraries.html#wildlife" class="btn btn-outline">Wildlife Itineraries</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/R%20(1).jpg" alt="Galle Fort Dutch colonial architecture"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">UNESCO Heritage</span>
+        <h1>Galle Fort<br><em>& Southern Coast</em></h1>
+        <p>Wander cobblestone streets of the 17th-century Dutch colonial fort overlooking the Indian Ocean.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#galle" class="btn btn-gold">Day Tour</a>
+          <a href="pages/itineraries.html#culture" class="btn btn-outline">Heritage Tours</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/eZy-Watermark_08-04-2023_17-33-25-1080x675.jpg" alt="Tea plantations in Nuwara Eliya Sri Lanka"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">Little England</span>
+        <h1>Tea Country<br><em>Nuwara Eliya</em></h1>
+        <p>Roll through misty highland tea estates on the most scenic train journey in the world.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#england" class="btn btn-gold">Explore</a>
+          <a href="pages/train-tickets.html" class="btn btn-outline">Book Train</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Kandalama-hot-air-ballooning-experience-in-sri-lanka.jpg" alt="Hot air ballooning over Dambulla Sri Lanka"/>
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="label">Sunrise Experiences</span>
+        <h1>Float Above<br><em>Ancient Temples</em></h1>
+        <p>Watch the sunrise from a hot air balloon over the Cultural Triangle — an experience like no other.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="pages/tours.html#ballooning" class="btn btn-gold">Book Experience</a>
+          <a href="pages/itineraries.html#luxury" class="btn btn-outline">Luxury Tours</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Slide Controls -->
+  <button class="slide-arrow prev">&#8592;</button>
+  <button class="slide-arrow next">&#8594;</button>
+  <div class="slide-dots">
+    <div class="slide-dot active"></div>
+    <div class="slide-dot"></div>
+    <div class="slide-dot"></div>
+    <div class="slide-dot"></div>
+    <div class="slide-dot"></div>
+    <div class="slide-dot"></div>
+  </div>
+
+  <!-- Quick Booking Panel -->
+  <div class="booking-panel">
+    <div class="booking-panel-title">✦ Plan Your Sri Lanka Journey</div>
+    <form id="booking-form">
+      <div class="booking-row">
+        <div class="form-group">
+          <label for="tour-select">Select Tour / Destination</label>
+          <select class="form-control" name="tour" id="tour-select" title="Select Tour / Destination">
+            <option value="">— Choose a Tour —</option>
+            <optgroup label="Day Tours">
+              <option>Classic Sri Lanka Circuit</option>
+              <option>Wildlife Safari Express</option>
+              <option>Pearl of the Indian Ocean</option>
+              <option>Family Discovery Sri Lanka</option>
+              <option>Romantic Escape — Ceylon Dream</option>
+              <option>Adventure Rush Sri Lanka</option>
+              
+            </optgroup>
+            <optgroup label="Itineraries">
+              <option>Adventure & Nature Tour</option>
+              <option>Culture & Heritage Tour</option>
+              <option>Family Tour</option>
+              <option>Luxury Bespoke Tour</option>
+              <option>North & East Coast Tour</option>
+              <option>Wildlife Tour</option>
+              <option>Sustainable Tour</option>
+              <option>Wellness Tour</option>
+              <option>Sports Based Tour</option>
+              <option>Romantic Tour</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="travel-date">Travel Date</label>
+          <input type="date" class="form-control" name="date" id="travel-date" placeholder="Select travel date" title="Travel Date"/>
+        </div>
+        <div class="form-group">
+          <label for="passengers-select">Passengers</label>
+          <select class="form-control" name="passengers" id="passengers-select" title="Number of Passengers">
+            <option>1</option><option selected>2</option><option>3</option>
+            <option>4</option><option>5–8</option><option>9–15</option>
+            <option>16–25</option><option>26–45</option><option>46+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="whatsapp-input">WhatsApp Number</label>
+          <input type="tel" class="form-control" name="whatsapp" id="whatsapp-input" placeholder="+94 77 123 4567" title="WhatsApp Number"/>
+        </div>
+        <button type="submit" class="btn btn-gold" style="height:48px;white-space:nowrap">
+          📲 Enquire Now
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FEATURES STRIP
+═════════════════════════════════════════════════════════ -->
+<div class="features-strip">
+  <div class="features-inner">
+    <div class="feature-item">
+      <div class="fi-icon">🏆</div>
+      <div class="fi-title">Award Winning DMC</div>
+      <p>Recognized Sri Lanka DMC since 2005</p>
+    </div>
+    <div class="feature-item">
+      <div class="fi-icon">🌿</div>
+      <div class="fi-title">Sustainable Travel</div>
+      <p>Responsible tourism at the heart of every tour</p>
+    </div>
+    <div class="feature-item">
+      <div class="fi-icon">🧭</div>
+      <div class="fi-title">Expert Local Guides</div>
+      <p>Licensed, fluent, passionate island experts</p>
+    </div>
+    <div class="feature-item">
+      <div class="fi-icon">✨</div>
+      <div class="fi-title">Fully Tailor Made</div>
+      <p>Every journey crafted to your exact wishes</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     DESTINATIONS GRID
+═════════════════════════════════════════════════════════ -->
+<section class="section" style="background: var(--white)">
+  <div class="container">
+    <div class="section-header aos">
+      <span class="label">Explore Sri Lanka</span>
+      <h2>Iconic <em>Destinations</em></h2>
+      <div class="divider"></div>
+      <p>From ancient citadels to pristine beaches, every corner of Sri Lanka tells a story.</p>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card featured aos" onclick="location.href='pages/tours.html#sigiriya'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Journey2.jpg" alt="Sigiriya"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">Cultural Triangle</span>
+          <h3>Sigiriya &<br>Dambulla</h3>
+        </div>
+      </div>
+      <div class="dest-card aos aos-delay-1" onclick="location.href='pages/tours.html#kandy'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/istockphoto-1310914750-170667a.jpg" alt="Kandy"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">Hill Capital</span>
+          <h3>Kandy</h3>
+        </div>
+      </div>
+      <div class="dest-card aos aos-delay-2" onclick="location.href='pages/tours.html#yala'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/wild-royal-bengal-tiger-nature-habitat-ranthambhore-national-park.jpg" alt="Yala"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">Wildlife</span>
+          <h3>Yala Safari</h3>
+        </div>
+      </div>
+      <div class="dest-card aos aos-delay-1" onclick="location.href='pages/tours.html#galle'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/galle-fort.webp" alt="Galle"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">UNESCO Heritage</span>
+          <h3>Galle Fort</h3>
+        </div>
+      </div>
+      <div class="dest-card aos aos-delay-2" onclick="location.href='pages/tours.html#england'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/cameron-highlands-tea-plantations-in-malaysia-1-1536x1024.jpg" alt="Tea Country"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">Highlands</span>
+          <h3>Tea Country</h3>
+        </div>
+      </div>
+      <div class="dest-card aos aos-delay-3" onclick="location.href='pages/tours.html#whale'">
+        <img src="https://69cd03b887c4a0b6216caad2.imgix.net/image.png" alt="Whale"/>
+        <div class="dest-card-overlay"></div>
+        <div class="dest-card-info">
+          <span class="label">Ocean</span>
+          <h3>Mirissa</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     STATS
+═════════════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item aos">
+      <div class="stat-num"><span class="counter" data-target="5200">0</span>+</div>
+      <div class="stat-label">Happy Travellers</div>
+    </div>
+    <div class="stat-item aos aos-delay-1">
+      <div class="stat-num"><span class="counter" data-target="18">0</span>+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item aos aos-delay-2">
+      <div class="stat-num"><span class="counter" data-target="48">0</span></div>
+      <div class="stat-label">Tour Destinations</div>
+    </div>
+    <div class="stat-item aos aos-delay-3">
+      <div class="stat-num"><span class="counter" data-target="98">0</span>%</div>
+      <div class="stat-label">5-Star Reviews</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     VEHICLE & GUIDE SELECTOR
+═════════════════════════════════════════════════════════ -->
+<section class="section vehicle-section">
+  <div class="container">
+    <div class="section-header aos">
+      <span class="label">Customise Your Trip</span>
+      <h2>Choose Your <em>Travel Style</em></h2>
+      <div class="divider"></div>
+      <p>Select the right vehicle and guide option for your group. Every trip is fully bespoke.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start" class="aos">
+      <!-- Vehicle Selector -->
+      <div class="vehicle-selector">
+        <div class="label" style="color:var(--gold-light);margin-bottom:0.5rem">Select Vehicle Type</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);margin-bottom:0">Group size determines the minimum vehicle</p>
+        <div class="vehicle-grid">
+          <div class="vehicle-option" data-vehicle="car">
+            <div class="v-minimum">Min</div>
+            <div class="v-icon">🚗</div>
+            <div class="v-name">Car / SUV</div>
+            <div class="v-pax">1–3 Pax</div>
+          </div>
+          <div class="vehicle-option" data-vehicle="van">
+            <div class="v-icon">🚐</div>
+            <div class="v-name">KDH Van</div>
+            <div class="v-pax">4–8 Pax</div>
+          </div>
+          <div class="vehicle-option" data-vehicle="coaster">
+            <div class="v-icon">🚌</div>
+            <div class="v-name">Coaster</div>
+            <div class="v-pax">9–25 Pax</div>
+          </div>
+          <div class="vehicle-option" data-vehicle="bus">
+            <div class="v-icon">🚎</div>
+            <div class="v-name">Coach Bus</div>
+            <div class="v-pax">26–45 Pax</div>
+          </div>
+          
+        </div>
+        <div id="vehicle-info"></div>
+        <p class="vehicle-note">⚠ A car is the minimum vehicle . Groups of 9+ automatically require a Coaster or Coach.</p>
+      </div>
+
+      <!-- Guide Selector -->
+      <div>
+        <div class="label" style="color:var(--gold-dark);margin-bottom:0.5rem">Guide & Driver Options</div>
+        <p style="font-size:0.85rem;color:var(--text-mid);margin-bottom:0.5rem">Choose how you'd like to experience Sri Lanka</p>
+        <div class="guide-toggle">
+          <div class="guide-option active" data-guide="guide">
+            <div class="g-icon">🧭</div>
+            <div class="g-title">Driver + Guide</div>
+            <div class="g-desc">Licensed expert guide + professional driver. Deep local knowledge, stories and commentary throughout your journey.</div>
+          </div>
+          <div class="guide-option" data-guide="driver">
+            <div class="g-icon">🚗</div>
+            <div class="g-title">Driver Only</div>
+            <div class="g-desc">Professional, English-speaking driver. Ideal if you prefer to explore independently or already have a guide.</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--white);border-radius:var(--radius-lg);border:1px solid #E0D8C8">
+          <div class="label" style="color:var(--gold-dark);margin-bottom:1rem">Quick Enquiry</div>
+          <form id="booking-form" style="display:flex;flex-direction:column;gap:1rem">
+            <div class="form-group">
+              <label for="whatsapp-input2">Your WhatsApp Number</label>
+              <input type="tel" class="form-control" name="whatsapp" id="whatsapp-input2" placeholder="+94 77 000 0000 or your country code" title="Your WhatsApp Number"/>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group">
+                <label for="travel-date2">Travel Date</label>
+                <input type="date" class="form-control" name="date" id="travel-date2" placeholder="Select travel date" title="Travel Date"/>
+              </div>
+              <div class="form-group">
+                <label for="passengers-select2">Passengers</label>
+                <select class="form-control" name="passengers" id="passengers-select2" title="Number of Passengers">
+                  <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5–8</option><option>9–15</option><option>16–25</option><option>26–45</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center">
+              Send via WhatsApp 📲
+            </button>
+              <script>fetch('http://localhost:3000/api/enquiries', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    whatsapp: '+94771234567',
+    name: 'Guest Name',
+    tour_name: 'Sigiriya Day Tour',
+    adults: 2
+  })
+});</script>   
+          
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     POPULAR TOURS
+═════════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--white)">
+  <div class="container">
+    <div class="section-header aos">
+      <span class="label">Most Loved</span>
+      <h2>Popular <em>Tours</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-3">
+
+      <div class="card aos">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/DSC8213-Edit-1.jpg" alt="Sigiriya"/>
+          <span class="badge">Full Day</span>
+        </div>
+        <div class="card-body">
+          <h4>Sigiriya &amp; Dambulla</h4>
+          <p>Scale the ancient 5th-century rock citadel and explore the ornate cave temples of Dambulla.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 65/person</span>
+          <a href="pages/tours.html#sigiriya" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+      <div class="card aos aos-delay-1">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/a98a42a4ad6ecff56728039f5058c278f33b73930f1a9c5c5e70145c1d9ce50a.avif" alt="Yala"/>
+          <span class="badge" style="background:var(--green-light)">Wildlife</span>
+        </div>
+        <div class="card-body">
+          <h4>Yala National Park Safari</h4>
+          <p>Track leopards, sloth bears and wild elephants at Sri Lanka's most biodiverse national park.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 85/person</span>
+          <a href="pages/tours.html#yala" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+      <div class="card aos aos-delay-2">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/Mirissa-Whale-Watching.jpg" alt="Whale Watching"/>
+          <span class="badge" style="background:#1565C0">Ocean</span>
+        </div>
+        <div class="card-body">
+          <h4>Whale Watching Mirissa</h4>
+          <p>Join a sunrise boat excursion to see blue whales — the largest creatures on Earth.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 55/person</span>
+          <a href="pages/tours.html#whale" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+      <div class="card aos">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/493ccb359e2823f0b2f65a60feb4c16cd6f91219e3653fffc9a9a47feca004df.avif" alt="Ballooning"/>
+          <span class="badge" style="background:var(--gold)">Exclusive</span>
+        </div>
+        <div class="card-body">
+          <h4>Hot Air Ballooning</h4>
+          <p>Drift over the Cultural Triangle at sunrise — temples, jungle and ancient reservoirs below you.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 160/person</span>
+          <a href="pages/tours.html#ballooning" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+      <div class="card aos aos-delay-1">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/rowan-heuvel-0iCcTwyQX7U-unsplash.jpg" alt="Tea Country"/>
+          <span class="badge">Highlands</span>
+        </div>
+        <div class="card-body">
+          <h4>Little England &amp; Tea Country</h4>
+          <p>Visit Nuwara Eliya's Victorian bungalows, tea factories and misty highland gardens.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 70/person</span>
+          <a href="pages/tours.html#england" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+      <div class="card aos aos-delay-2">
+        <div class="card-img">
+          <img src="https://69cd03b887c4a0b6216caad2.imgix.net/R%20(1).jpg" alt="Galle"/>
+          <span class="badge">Heritage</span>
+        </div>
+        <div class="card-body">
+          <h4>Galle Fort Day Tour</h4>
+          <p>Explore the 17th-century Dutch fort, boutique galleries, spice shops and clifftop lighthouse.</p>
+        </div>
+        <div class="card-footer">
+          <span class="label" style="color:var(--gold)">From USD 45/person</span>
+          <a href="pages/tours.html#galle" class="btn btn-dark" style="padding:0.5rem 1.2rem;font-size:0.65rem">Details →</a>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <a href="pages/tours.html" class="btn btn-gold">View All Day Tours →</a>
+      <a href="pages/itineraries.html" class="btn btn-dark" style="margin-left:1rem">Browse Itineraries →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     TAILOR MADE TOURS
+═════════════════════════════════════════════════════════ -->
+<section class="tailor-section">
+  <div class="tailor-inner">
+    <div class="aos">
+      <span class="label" style="color:var(--gold-light)">Your Journey, Your Way</span>
+      <h2>Tailor Made<br><em>Tours</em></h2>
+      <div class="divider" style="margin:1rem 0"></div>
+      <p style="margin-bottom:1.5rem">No two travellers are the same. We craft every itinerary around your interests, pace and budget — from a 3-day escape to a 21-day grand tour of the island.</p>
+      <ul style="margin-bottom:2rem;display:flex;flex-direction:column;gap:0.7rem">
+        <li style="color:rgba(255,255,255,0.8);font-size:0.9rem">✦ Fully private, never group-shared</li>
+        <li style="color:rgba(255,255,255,0.8);font-size:0.9rem">✦ Flexible start dates year-round</li>
+        <li style="color:rgba(255,255,255,0.8);font-size:0.9rem">✦ Expert licensed guides available</li>
+        <li style="color:rgba(255,255,255,0.8);font-size:0.9rem">✦ All vehicles from car to luxury coach</li>
+        <li style="color:rgba(255,255,255,0.8);font-size:0.9rem">✦ Budget, comfort and luxury tiers</li>
+      </ul>
+      <a href="pages/contact.html" class="btn btn-gold">Start Planning →</a>
+    </div>
+    <div class="tailor-img aos aos-delay-2">
+      <img src="https://69cd03b887c4a0b6216caad2.imgix.net/657381488_2027273351227288_5807204570128630401_n.jpg" alt="Tailor made Sri Lanka tours"/>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     TESTIMONIALS
+═════════════════════════════════════════════════════════ -->
+<section class="section testimonial-section">
+  <div class="container">
+    <div class="section-header aos">
+      <span class="label">Guest Stories</span>
+      <h2>What Travellers <em>Say</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="grid-3">
+      <div class="testimonial-card aos">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Absolutely flawless organisation. Our guide was extraordinary — we learned more about Sri Lanka in 10 days than we could have in a lifetime."</blockquote>
+        <cite>— Sarah &amp; James, United Kingdom</cite>
+      </div>
+      <div class="testimonial-card aos aos-delay-1">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The whale watching was a once-in-a-lifetime moment. PearlHeritageTours.com made every detail perfect, from transfers to the boutique hotels."</blockquote>
+        <cite>— Marco &amp; Lucia, Italy</cite>
+      </div>
+      <div class="testimonial-card aos aos-delay-2">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Best travel investment we've ever made. Sri Lanka is stunning and our PearlHeritageTours.com guide made every stop magical. We'll be back!"</blockquote>
+        <cite>— The Hendersons, Australia</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<div id="footer-placeholder"></div>
+
+<script src="js/layout.js"></script>
+<script>
+  // Override SITE_ROOT for root-level page
+  SITE_ROOT = '';
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
