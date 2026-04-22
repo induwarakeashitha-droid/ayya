@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Uses a retry loop because layout.js injects the nav dynamically
   // and we need to wait until the elements exist in the DOM.
   function initNav() {
-    const toggle   = document.querySelector('.nav-toggle');
+    const toggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const navbar   = document.getElementById('navbar');
+    const navbar = document.getElementById('navbar');
 
     if (!toggle || !navLinks || !navbar) {
       // Nav not injected yet — retry in 50ms
@@ -146,10 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const vehicleInfo = document.getElementById('vehicle-info');
 
   const vehicleData = {
-    car:    { name: 'Car / SUV', pax: '1–3 Pax', desc: 'Ideal for solo travellers, couples or small families. Air-conditioned sedan or SUV with an experienced driver.', icon: '🚗' },
-    van:    { name: 'KDH Van', pax: '4–8 Pax', desc: 'Comfortable air-conditioned passenger van — perfect for families or small groups exploring the island.', icon: '🚐' },
-    coaster:{ name: 'Coaster Bus', pax: '9–25 Pax', desc: 'Mid-size coach ideal for medium groups. Comfortable seating with A/C and luggage space.', icon: '🚌' },
-    bus:    { name: 'Coach Bus', pax: '26–45 Pax', desc: 'Full-size luxury coach for large groups. Reclining seats, A/C, PA system and ample luggage hold.', icon: '🚎' },
+    car: { name: 'Car / SUV', pax: '1–3 Pax', desc: 'Ideal for solo travellers, couples or small families. Air-conditioned sedan or SUV with an experienced driver.', icon: '🚗' },
+    van: { name: 'KDH Van', pax: '4–8 Pax', desc: 'Comfortable air-conditioned passenger van — perfect for families or small groups exploring the island.', icon: '🚐' },
+    coaster: { name: 'Coaster Bus', pax: '9–25 Pax', desc: 'Mid-size coach ideal for medium groups. Comfortable seating with A/C and luggage space.', icon: '🚌' },
+    bus: { name: 'Coach Bus', pax: '26–45 Pax', desc: 'Full-size luxury coach for large groups. Reclining seats, A/C, PA system and ample luggage hold.', icon: '🚎' },
     tuktuk: { name: 'Tuk Tuk', pax: '1–2 Pax', desc: 'The iconic Sri Lankan three-wheeler! Perfect for short city tours with an authentic local experience.', icon: '🛺' },
   };
 
@@ -184,29 +184,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── BOOKING FORM ─────────────────────────────────────────
+  // ── BOOKING FORM (Hero) ──────────────────────────────────
   const bookingForm = document.getElementById('booking-form');
   if (bookingForm) {
     bookingForm.addEventListener('submit', e => {
       e.preventDefault();
       const data = new FormData(bookingForm);
-      const whatsapp = data.get('whatsapp');
+      const whatsapp = data.get('whatsapp') || 'Not provided';
       const tour = data.get('tour') || 'Custom Tour';
       const date = data.get('date') || 'Flexible';
       const pax = data.get('passengers') || '2';
       const vehicle = document.querySelector('.vehicle-option.active')?.dataset.vehicle || 'car';
       const guide = document.querySelector('.guide-option.active')?.dataset.guide || 'guide';
-      
+
       const msg = encodeURIComponent(
         `🌴 *PearlHeritageTours.com — Tour Enquiry*\n\n` +
         `Tour: ${tour}\n` +
         `Date: ${date}\n` +
         `Passengers: ${pax}\n` +
         `Vehicle: ${vehicle}\n` +
-        `Service: ${guide === 'guide' ? 'Driver + Guide' : 'Driver Only'}\n\n` +
+        `Service: ${guide === 'guide' ? 'Driver + Guide' : 'Driver Only'}\n` +
+        `Customer WhatsApp: ${whatsapp}\n\n` +
         `Please send me more details!`
       );
-      window.open(`https://wa.me/${whatsapp || '94771234567'}?text=${msg}`, '_blank');
+      window.open(`https://wa.me/94768329877?text=${msg}`, '_blank');
+    });
+  }
+
+  // ── BOOKING FORM 2 (Quick Enquiry) ──────────────────────
+  const bookingForm2 = document.getElementById('booking-form-2');
+  if (bookingForm2) {
+    bookingForm2.addEventListener('submit', e => {
+      e.preventDefault();
+      const data = new FormData(bookingForm2);
+      const whatsapp = data.get('whatsapp') || 'Not provided';
+      const date = data.get('date') || 'Flexible';
+      const pax = data.get('passengers') || '2';
+      const vehicle = document.querySelector('.vehicle-option.active')?.dataset.vehicle || 'car';
+      const guide = document.querySelector('.guide-option.active')?.dataset.guide || 'guide';
+
+      const msg = encodeURIComponent(
+        `🌴 *PearlHeritageTours.com — Quick Enquiry*\n\n` +
+        `Date: ${date}\n` +
+        `Passengers: ${pax}\n` +
+        `Vehicle: ${vehicle}\n` +
+        `Service: ${guide === 'guide' ? 'Driver + Guide' : 'Driver Only'}\n` +
+        `Customer WhatsApp: ${whatsapp}\n\n` +
+        `Please send me more details!`
+      );
+      window.open(`https://wa.me/94768329877?text=${msg}`, '_blank');
     });
   }
 

@@ -1,52 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>About Us — PearlHeritageTours.com</title>
-<link rel="stylesheet" href="../css/main.css"/>
-<style>
-.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-.team-card { text-align:center; }
-.team-card img { width:160px; height:160px; border-radius:50%; object-fit:cover; margin:0 auto 1rem; border:4px solid var(--gold-light); }
-.team-card h4 { color:var(--green); margin-bottom:0.2rem; font-size:1.1rem; }
-.team-card .role { font-family:var(--font-ui); font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-dark); }
-.team-card p { font-size:0.85rem; margin-top:0.5rem; }
-@media(max-width:700px){ .team-grid{grid-template-columns:1fr 1fr;} }
-</style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — PearlHeritageTours.com</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .team-card {
+      text-align: center;
+    }
+
+    .team-card img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 4px solid var(--gold-light);
+    }
+
+    .team-card h4 {
+      color: var(--green);
+      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+    }
+
+    .team-card .role {
+      font-family: var(--font-ui);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+    }
+
+    .team-card p {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    @media(max-width:700px) {
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="nav-placeholder"></div>
-<div class="page-hero">
-  <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=1600&q=80" alt="About"/>
-  <div class="page-hero-content"><span class="label">Our Story</span><h1>About <em>PearlHeritageTours.com</em></h1><div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>About</div></div>
-</div>
-<section class="section" style="background:var(--white)">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem" class="aos">
-      <div>
-        <span class="label" style="color:var(--gold)">Since 2005</span>
-        <h2 style="color:var(--green);font-style:italic">Two Decades of<br>Crafting Journeys</h2>
-        <div class="divider" style="margin:1rem 0"></div>
-        <p>PearlHeritageTours.com was born from a simple belief: that travel should transform, not just transport. Founded by Rohan Perera in 2005, we've grown from a one-van operation in Colombo to Sri Lanka's most trusted boutique DMC — without ever losing the personal touch.</p>
-        <p style="margin-top:1rem">Every guide, every driver, every hotel partner has been personally vetted. We take no commission from hotels we don't genuinely recommend.</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem">
-          <div><div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">5,200+</div><div style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">Happy Guests</div></div>
-          <div><div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">48</div><div style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">Destinations</div></div>
-          <div><div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">18</div><div style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">Years Experience</div></div>
-          <div><div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">98%</div><div style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">5-Star Reviews</div></div>
-        </div>
-      </div>
-      <div style="border-radius:var(--radius-lg);overflow:hidden"><img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=85" alt="Our Team" style="width:100%;height:460px;object-fit:cover"/></div>
-    </div>
-    <div id="dmc" class="aos">
-      <div class="section-header"><span class="label">Professional Services</span><h2>DMC in <em>Sri Lanka</em></h2><div class="divider"></div><p>As a full-service Destination Management Company, we handle everything your travel agency or direct client needs — from visa letters to group logistics.</p></div>
-      <div class="grid-3">
-        <div class="card"><div class="card-body"><h4 style="color:var(--green)">🏨 Hotel Contracting</h4><p>Direct contracted rates at 200+ properties island-wide — from eco lodges to 5-star resorts.</p></div></div>
-        <div class="card"><div class="card-body"><h4 style="color:var(--green)">🚌 Group Logistics</h4><p>Coach buses, multiple vehicles, guide teams and full ground coordination for groups of any size.</p></div></div>
-        <div class="card"><div class="card-body"><h4 style="color:var(--green)">📋 Event Planning</h4><p>Corporate incentive trips, destination weddings, filming logistics and special occasions.</p></div></div>
-      </div>
+  <div id="nav-placeholder"></div>
+  <div class="page-hero">
+    <img
+      src="https://scontent.fcmb3-3.fna.fbcdn.net/v/t39.30808-6/674801591_2050609285560361_443026602539410078_n.jpg?stp=cp6_dst-jpg_s960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=7b2446&_nc_ohc=VrFRhpuJYCAQ7kNvwERhyjj&_nc_oc=AdovgL85lhAniNm3vZ3GhUymFQvHT_vRQKIiTRT4rZw4tKy2icdALVn7q2VH9P6v5Mo&_nc_zt=23&_nc_ht=scontent.fcmb3-3.fna&_nc_gid=db_5CaM72bcFywR_lGjWqA&_nc_ss=7a389&oh=00_Af1TUCr2Av6g2Q7N5MNAkkhM-_qezR8T3LqY2fXgyKR7rQ&oe=69EE8B26"
+      alt="About" />
+    <div class="page-hero-content"><span class="label">Our Story</span>
+      <h1>About <em>PearlHeritageTours.com</em></h1>
+      <div class="breadcrumb"><a href="../index.html">Home</a><span>›</span>About</div>
     </div>
   </div>
-</section>
-<div id="footer-placeholder"></div>
-<script src="../js/layout.js"></script><script src="../js/main.js"></script>
-</body></html>
+  <section class="section" style="background:var(--white)">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem"
+        class="aos">
+        <div>
+          <span class="label" style="color:var(--gold)">Since 2005</span>
+          <h2 style="color:var(--green);font-style:italic">Two Decades of<br>Crafting Journeys</h2>
+          <div class="divider" style="margin:1rem 0"></div>
+          <p>PearlHeritageTours.com was born from a simple belief: that travel should transform, not just transport.
+            Founded by Rohan Perera in 2005, we've grown from a one-van operation in Colombo to Sri Lanka's most trusted
+            boutique DMC — without ever losing the personal touch.</p>
+          <p style="margin-top:1rem">Every guide, every driver, every hotel partner has been personally vetted. We take
+            no commission from hotels we don't genuinely recommend.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem">
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">5,200+
+              </div>
+              <div
+                style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">
+                Happy Guests</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">48</div>
+              <div
+                style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">
+                Destinations</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">18</div>
+              <div
+                style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">
+                Years Experience</div>
+            </div>
+            <div>
+              <div style="font-family:var(--font-display);font-size:2.5rem;color:var(--green);font-weight:600">98%</div>
+              <div
+                style="font-family:var(--font-ui);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dark)">
+                5-Star Reviews</div>
+            </div>
+          </div>
+        </div>
+        <div style="border-radius:var(--radius-lg);overflow:hidden"><img
+            src="https://scontent.fcmb11-3.fna.fbcdn.net/v/t39.30808-6/623798741_1984019325552691_36888501107029799_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG42cXGhnpi1wqoLYnDamxRU02xq34MUq1TTbGrfgxSrcQXoXVc_kYhshSPh4nzsPtRY6-fhcUWg19eiVtlIVk4&_nc_ohc=NXW4YgA61JQQ7kNvwHDnib8&_nc_oc=AdpS2u_zYygXcUneMDGgGGgPjcFe_4c8O7dG3BWV0n3cwH4HpyeXSDpj2UPjqTLEy9M&_nc_zt=23&_nc_ht=scontent.fcmb11-3.fna&_nc_gid=1k4XZvomGcyM9hwFLjG_8Q&_nc_ss=7a3a8&oh=00_Af2LYjnBmHiRaiKxdfV0_wtCNqh9Ze8fzWgTy8KkUp7h9A&oe=69EEA71E"
+            alt="Our Team" style="width:100%;height:460px;object-fit:cover" /></div>
+      </div>
+      <div id="dmc" class="aos">
+        <div class="section-header"><span class="label">Professional Services</span>
+          <h2>DMC in <em>Sri Lanka</em></h2>
+          <div class="divider"></div>
+          <p>As a full-service Destination Management Company, we handle everything your travel agency or direct client
+            needs — from visa letters to group logistics.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 style="color:var(--green)">🏨 Hotel Contracting</h4>
+              <p>Direct contracted rates at 200+ properties island-wide — from eco lodges to 5-star resorts.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 style="color:var(--green)">🚌 Group Logistics</h4>
+              <p>Coach buses, multiple vehicles, guide teams and full ground coordination for groups of any size.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4 style="color:var(--green)">📋 Event Planning</h4>
+              <p>Corporate incentive trips, destination weddings, filming logistics and special occasions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="footer-placeholder"></div>
+  <script src="../js/layout.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+
+</html>
