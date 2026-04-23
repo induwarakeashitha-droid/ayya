@@ -141,10 +141,7 @@ function renderFooter() {
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>©2026 Pearl Heritage Tours. All rights reserved </span>
-    <span> Designed by  <a href= "https://aurawebsolution.online" target="_blank" rel="noopener noreferrer">Induwara Senevirathne</a></span>
-  </div>
+  
 </footer>
 
 <!-- WhatsApp Float -->
