@@ -1,19 +1,4 @@
-# robots.txt for Pearl Heritage Tours
-# https://www.pearlheritagetours.com
-
-# Allow all search engines
 User-agent: *
 Allow: /
 
-# Block backend and config files
-Disallow: /tours-backend/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /package.json
-Disallow: /package-lock.json
-
-# Sitemap location
 Sitemap: https://www.pearlheritagetours.com/sitemap.xml
-
-# Crawl-delay (optional, be polite to server)
-Crawl-delay: 1

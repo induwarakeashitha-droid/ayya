@@ -103,41 +103,41 @@ function renderFooter() {
     <div class="footer-col">
       <h5>Tours</h5>
       <ul>
-        <li><a href="pages/tours.html#colombo">Classic Sri Lankan Circuit</a></li>
-        <li><a href="pages/tours.html#galle">Wildlife Safari Express</a></li>
-        <li><a href="pages/tours.html#kandy">Luxury Pearl of Indian Ocean</a></li>
-        <li><a href="pages/tours.html#sigiriya">Family Discovery Sri Lanka</a></li>
-        <li><a href="pages/tours.html#yala">Romantic Honeymoon Escape</a></li>
-        <li><a href="pages/tours.html#whale">Adventure rush</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#colombo">Classic Sri Lankan Circuit</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#galle">Wildlife Safari Express</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#kandy">Luxury Pearl of Indian Ocean</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#sigiriya">Family Discovery Sri Lanka</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#yala">Romantic Honeymoon Escape</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#whale">Adventure rush</a></li>
         
       </ul>
     </div>
     <div class="footer-col">
       <h5>Itineraries</h5>
       <ul>
-        <li><a href="pages/itineraries.html#luxury">Luxury Bespoke</a></li>
-        <li><a href="pages/itineraries.html#wildlife">Wildlife Tours</a></li>
-        <li><a href="pages/itineraries.html#culture">Culture & Heritage</a></li>
-        <li><a href="pages/itineraries.html#family">Family Tours</a></li>
-        <li><a href="pages/itineraries.html#romantic">Romantic Tours</a></li>
-        <li><a href="pages/itineraries.html#wellness">Wellness Tours</a></li>
-        <li><a href="pages/itineraries.html#adventure">Adventure</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#luxury">Luxury Bespoke</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#wildlife">Wildlife Tours</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#culture">Culture & Heritage</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#family">Family Tours</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#romantic">Romantic Tours</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#wellness">Wellness Tours</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html#adventure">Adventure</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Quick Links</h5>
       <ul>
-        <li><a href="pages/about.html">About Us</a></li>
-        <li><a href="pages/about.html#dmc">DMC in Sri Lanka</a></li>
-        <li><a href="pages/little-hearts.html">Little Hearts Project</a></li>
-        <li><a href="pages/blog.html">Blog</a></li>
-        <li><a href="pages/travel-tips.html">Travel Tips</a></li>
-        <li><a href="pages/transfers.html">Transfers</a></li>
-        <li><a href="pages/train-tickets.html">Train Tickets</a></li>
-        <li><a href="pages/contact.html">Contact Us</a></li>
-        <li><a href="pages/booking-terms.html">Booking Terms</a></li>
-        <li><a href="pages/cookie-policy.html">Cookie Policy</a></li>
-        <li><a href="pages/sitemap.html">Sitemap</a></li>
+        <li><a href="${SITE_ROOT}pages/about.html">About Us</a></li>
+        <li><a href="${SITE_ROOT}pages/about.html#dmc">DMC in Sri Lanka</a></li>
+        <li><a href="${SITE_ROOT}pages/little-hearts.html">Little Hearts Project</a></li>
+        <li><a href="${SITE_ROOT}pages/blog.html">Blog</a></li>
+        <li><a href="${SITE_ROOT}pages/travel-tips.html">Travel Tips</a></li>
+        <li><a href="${SITE_ROOT}pages/transfers.html">Transfers</a></li>
+        <li><a href="${SITE_ROOT}pages/train-tickets.html">Train Tickets</a></li>
+        <li><a href="${SITE_ROOT}pages/contact.html">Contact Us</a></li>
+        <li><a href="${SITE_ROOT}pages/booking-terms.html">Booking Terms</a></li>
+        <li><a href="${SITE_ROOT}pages/cookie-policy.html">Cookie Policy</a></li>
+        <li><a href="${SITE_ROOT}pages/sitemap.html">Sitemap</a></li>
       </ul>
     </div>
   </div>
@@ -145,6 +145,7 @@ function renderFooter() {
     <span>©2026 Pearl Heritage Tours. All rights reserved </span>
     <span> Designed by  <a href= "https://aurawebsolution.online" target="_blank" rel="noopener noreferrer">Induwara Senevirathne</a></span>
   </div>
+
 </footer>
 
 <!-- WhatsApp Float -->
