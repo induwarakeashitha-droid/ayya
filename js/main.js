@@ -196,13 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const pax = data.get('passengers') || '2';
       const vehicle = document.querySelector('.vehicle-option.active')?.dataset.vehicle || 'car';
       const guide = document.querySelector('.guide-option.active')?.dataset.guide || 'guide';
+      const vehicleName = vehicleData[vehicle]?.name || vehicle;
 
       const msg = encodeURIComponent(
         `🌴 *PearlHeritageTours.com — Tour Enquiry*\n\n` +
         `Tour: ${tour}\n` +
         `Date: ${date}\n` +
         `Passengers: ${pax}\n` +
-        `Vehicle: ${vehicle}\n` +
+        `Vehicle: ${vehicleName}\n` +
         `Service: ${guide === 'guide' ? 'Driver + Guide' : 'Driver Only'}\n` +
         `Customer WhatsApp: ${whatsapp}\n\n` +
         `Please send me more details!`
@@ -222,12 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const pax = data.get('passengers') || '2';
       const vehicle = document.querySelector('.vehicle-option.active')?.dataset.vehicle || 'car';
       const guide = document.querySelector('.guide-option.active')?.dataset.guide || 'guide';
+      const vehicleName = vehicleData[vehicle]?.name || vehicle;
 
       const msg = encodeURIComponent(
         `🌴 *PearlHeritageTours.com — Quick Enquiry*\n\n` +
         `Date: ${date}\n` +
         `Passengers: ${pax}\n` +
-        `Vehicle: ${vehicle}\n` +
+        `Vehicle: ${vehicleName}\n` +
         `Service: ${guide === 'guide' ? 'Driver + Guide' : 'Driver Only'}\n` +
         `Customer WhatsApp: ${whatsapp}\n\n` +
         `Please send me more details!`
