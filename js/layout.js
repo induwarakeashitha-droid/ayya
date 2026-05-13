@@ -88,6 +88,7 @@ function renderNav(activePage = '') {
 }
 
 function renderFooter() {
+  const currentYear = new Date().getFullYear();
   return `
 <footer>
   <div class="footer-grid">
@@ -95,21 +96,21 @@ function renderFooter() {
       <div class="nav-logo">PearlHeritageTours.com <span>Sri Lanka Tours</span></div>
       <p>Your trusted DMC partner in Sri Lanka. Crafting unforgettable journeys across the Pearl of the Indian Ocean since 2005.</p>
       <div style="margin-top:1.5rem;display:flex;gap:0.8rem">
-        <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">f</a>
-        <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">in</a>
-        <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">yt</a>
+        <a href="https://www.facebook.com/pearlheritagetours" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">f</a>
+        <a href="https://www.instagram.com/pearlheritagetours" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'" title="Instagram">📷</a>
+        <a href="https://www.youtube.com/pearlheritagetours" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'" title="YouTube">▶</a>
+        <a href="https://wa.me/94768329877" target="_blank" rel="noopener" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:all 0.2s" onmouseover="this.style.background='var(--gold)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'" title="WhatsApp">💬</a>
       </div>
     </div>
     <div class="footer-col">
       <h5>Tours</h5>
       <ul>
-        <li><a href="${SITE_ROOT}pages/tours.html#colombo">Classic Sri Lankan Circuit</a></li>
-        <li><a href="${SITE_ROOT}pages/tours.html#galle">Wildlife Safari Express</a></li>
-        <li><a href="${SITE_ROOT}pages/tours.html#kandy">Luxury Pearl of Indian Ocean</a></li>
-        <li><a href="${SITE_ROOT}pages/tours.html#sigiriya">Family Discovery Sri Lanka</a></li>
-        <li><a href="${SITE_ROOT}pages/tours.html#yala">Romantic Honeymoon Escape</a></li>
-        <li><a href="${SITE_ROOT}pages/tours.html#whale">Adventure rush</a></li>
-        
+        <li><a href="${SITE_ROOT}pages/tours.html#classic">Classic Sri Lankan Circuit</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#wildlife">Wildlife Safari Express</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#luxury">Pearl of the Indian Ocean</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html#family">Family Discovery Sri Lanka</a></li>
+        <li><a href="${SITE_ROOT}pages/itineraries.html">View All Itineraries</a></li>
+        <li><a href="${SITE_ROOT}pages/tours.html">Discover More Tours</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -121,28 +122,23 @@ function renderFooter() {
         <li><a href="${SITE_ROOT}pages/itineraries.html#family">Family Tours</a></li>
         <li><a href="${SITE_ROOT}pages/itineraries.html#romantic">Romantic Tours</a></li>
         <li><a href="${SITE_ROOT}pages/itineraries.html#wellness">Wellness Tours</a></li>
-        <li><a href="${SITE_ROOT}pages/itineraries.html#adventure">Adventure</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h5>Quick Links</h5>
       <ul>
         <li><a href="${SITE_ROOT}pages/about.html">About Us</a></li>
-        <li><a href="${SITE_ROOT}pages/about.html#dmc">DMC in Sri Lanka</a></li>
-        <li><a href="${SITE_ROOT}pages/little-hearts.html">Little Hearts Project</a></li>
         <li><a href="${SITE_ROOT}pages/blog.html">Blog</a></li>
         <li><a href="${SITE_ROOT}pages/travel-tips.html">Travel Tips</a></li>
-        <li><a href="${SITE_ROOT}pages/transfers.html">Transfers</a></li>
-        <li><a href="${SITE_ROOT}pages/train-tickets.html">Train Tickets</a></li>
+        <li><a href="${SITE_ROOT}pages/transfers.html">Airport Transfers</a></li>
         <li><a href="${SITE_ROOT}pages/contact.html">Contact Us</a></li>
         <li><a href="${SITE_ROOT}pages/booking-terms.html">Booking Terms</a></li>
         <li><a href="${SITE_ROOT}pages/cookie-policy.html">Cookie Policy</a></li>
-        <li><a href="${SITE_ROOT}pages/sitemap.html">Sitemap</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span> ©2026 Pearl Heritage Tours. All rights reserved. </span>
+    <span> ©${currentYear} Pearl Heritage Tours. All rights reserved. </span>
     <span>Designed by <a href="https://aurawebsolution.online/" target="_blank" rel="noopener" >Induwara Senevirathne</a></span>
   </div>
 
